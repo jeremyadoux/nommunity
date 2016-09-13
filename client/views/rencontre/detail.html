@@ -19,7 +19,7 @@
         <div class="col-sm-6" ng-repeat="relation in vmRD.rencontre.relation">
           <div class="card">
             <div class="card-header">
-              <h2>{{relation.jdrrelation.jdrpnj.name}} Niveau {{relation.jdrpnj.level}}<small>Type : {{relation.jdrpnj.experience}} EXP</small></h2>
+              <!--<h2>{{relation.jdrpnj.name}} Niveau {{relation.jdrpnj.level}}<small>Type : {{relation.jdrpnj.experience}} EXP</small></h2>-->
 
               <ul class="actions">
                 <li uib-dropdown="" class="dropdown" style="">
@@ -41,8 +41,23 @@
 
             <div class="card-body card-padding">
               <div class="row">
-                <div class="col-sm-6"><span class="f-500 c-black m-b-5">Initiative:</span> +{{relation.jdrpnj.initiative}}</div>
+                <div class="col-sm-6">
+                  <span class="f-500 c-black m-b-5">Initiative:</span> +{{relation.jdrpnj.initiative}}
+                  <span class="f-500 c-green m-b-5"> {{relation.data.initiative}}</span>
+                </div>
                 <div class="col-sm-6"><span class="f-500 c-black m-b-5">Perception:</span> +{{relation.jdrpnj.perception}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <span class="f-500 m-b-5" ng-class="{'c-green': relation.data.pv > vmRD.getPeril(relation.jdrpnj.pv), 'c-red': relation.data.pv <= vmRD.getPeril(relation.jdrpnj.pv)}">PV actuel {{relation.data.pv}}</span>
+                  <i class="icon-pv zmdi zmdi-hc-fw c-green waves-effect" ng-class="{'zmdi-plus-circle': relation.method.pvmodeplus, 'zmdi-plus-circle-o': !relation.method.pvmodeplus}" ng-click="vmRD.changeModeToPlus(relation)"></i>
+                  <i class="icon-pv zmdi zmdi-hc-fw c-red waves-effect" ng-class="{'zmdi-minus-circle': relation.method.pvmodemoins, 'zmdi-minus-circle-outline': !relation.method.pvmodemoins}" ng-click="vmRD.changeModeToMoins(relation)"></i>
+                  <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(1, relation)">1</button>
+                  <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(2, relation)">2</button>
+                  <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(5, relation)">5</button>
+                  <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(10, relation)">10</button>
+                  <span class="f-500 m-b-5 c-orange" ng-show="relation.currentPvChanged != 0">{{relation.currentPvChanged}}</span>
+                </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
@@ -68,6 +83,22 @@
                 <div class="col-sm-12">
                   <div class="row">
                     <div class="col-sm-12"><span class="f-500 c-black m-b-5">{{power.name}}</span></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button class="btn btn-primary waves-effect" ng-click="vmRD.rollAllPowerDice(power)">Roll All</button>
+                      <button class="btn btn-primary waves-effect" ng-click="vmRD.rollPowerDiceAttack(power)">Roll Attack</button>
+                      <button class="btn btn-primary waves-effect" ng-click="vmRD.rollPowerDiceDegat(power)">Roll Degat</button>
+                      <button class="btn btn-primary waves-effect" ng-click="vmRD.rollPowerDiceRAZ(power)">Roll RAZ</button>
+                    </div>
+                    <div class="col-sm-12" ng-show="power.$diceExecuted.degat.length > 0">
+                      <span class="f-500 c-green m-b-5">Attack:</span>
+                      <span class="c-green" ng-repeat="attack in power.$diceExecuted.attack">{{attack.result}} vs {{power.versus}} / </span>
+                    </div>
+                    <div class="col-sm-12" ng-show="power.$diceExecuted.degat.length > 0">
+                      <span class="f-500 c-green m-b-5">Degats:</span>
+                      <span class="c-green" ng-repeat="degat in power.$diceExecuted.degat">{{degat.result}} / </span>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col-sm-6">

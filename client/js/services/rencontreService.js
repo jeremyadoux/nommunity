@@ -34,9 +34,13 @@
           .then(function(response) {
             var prepareDataRencontre = response[0].rencontre;
             prepareDataRencontre.relation = [];
-            
+
             for(var i in response) {
               if(typeof response[i].id !== 'undefined') {
+                if(typeof response[i].data == "undefined") {
+                  response[i].data = {};
+                }
+
                 prepareDataRencontre.relation.push({
                   relationId: response[i].id,
                   data: response[i].data,

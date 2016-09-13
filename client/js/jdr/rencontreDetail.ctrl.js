@@ -6,14 +6,21 @@
     .controller('rencontreDetailController', rencontreDetailController);
 
 
-  rencontreDetailController.$inject=['$stateParams', 'RencontreService'];
+  rencontreDetailController.$inject=['$stateParams', '$timeout', 'RencontreService'];
 
-  function rencontreDetailController($stateParams, RencontreService) {
+  function rencontreDetailController($stateParams, $timeout, RencontreService) {
     var vm = this;
 
     //VM method
     vm.getPeril = getPeril;
     vm.sendAllInitiative = sendAllInitiative;
+    vm.changeModeToPlus = changeModeToPlus;
+    vm.changeModeToMoins = changeModeToMoins;
+    vm.changePVBy = changePVBy;
+    vm.rollAllPowerDice = rollAllPowerDice;
+    vm.rollPowerDiceAttack = rollPowerDiceAttack;
+    vm.rollPowerDiceDegat = rollPowerDiceDegat;
+    vm.rollPowerDiceRAZ = rollPowerDiceRAZ;
 
     //VM attribute
     vm.rencontreId = $stateParams.rencontreId || 0;
@@ -26,47 +33,103 @@
     function loadRencontre() {
       RencontreService.loadByRelationId(vm.rencontreId).then(function(response) {
         vm.rencontre = response;
+        initializeAllPnj();
       });
     }
 
+    function initializeAllPnj() {
+      for(var i in vm.rencontre.relation) {
+        var relation = vm.rencontre.relation[i];
+        setMethodObject(relation);
+        setPvMax(relation);
+      }
+    }
+
     function sendAllInitiative() {
-      console.log(vm.rencontre);
+      for(var i in vm.rencontre.relation) {
+        var relation = vm.rencontre.relation[i];
+        sendInitiative(relation);
+      }
+    }
+
+    function sendInitiative(relation) {
+      relation.data.initiative = d20.roll("1d20+"+relation.jdrpnj.initiative);
+    }
+
+    function setPvMax(relation) {
+      relation.data.pv = relation.jdrpnj.pv;
+    }
+
+    function setMethodObject(relation) {
+      relation.method = {
+        pvmodeplus: false,
+        pvmodemoins: true
+      };
     }
 
     function getPeril(pv) {
       return Math.floor(pv/2);
     }
 
+    function changeModeToPlus(relation) {
+      relation.method.pvmodeplus = true;
+      relation.method.pvmodemoins = false;
+    }
 
-    function roll(dice)
-    {
-      var dice = dice.replace(/- */,'+ -');
-      var dice = dice.replace(/D/,'d');
-      var re = / *\+ */;
-      var items = dice.split(re);
-      var res = new Array();
-      var type = new Array();
-      for ( var i=0; i<items.length; i++) {
-        var match = items[i].match(/^[ \t]*(-)?(\d+)?(?:(d)(\d+))?[ \t]*$/);
-        if (match) {
-          var sign = match[1]?-1:1;
-          var num = parseInt(match[2] || "1");
-          var max = parseInt(match[4] || "0");
-          if (match[3]) {
-            for ( j=1; j<=num; j++) {
-              res[res.length] = sign * Math.ceil(max*Math.random());
-              type[type.length] = max;
-            }
-          }
-          else {
-            res[res.length] = sign * num;
-            type[type.length] = 0;
-          }
-        }
-        else return null;
+    function changeModeToMoins(relation) {
+      relation.method.pvmodemoins = true;
+      relation.method.pvmodeplus = false;
+    }
+
+    function changePVBy(nb, relation) {
+      if(relation.method.pvmodemoins) {
+        changePvFromRelation(nb*-1, relation);
+      } else if(relation.method.pvmodeplus) {
+        changePvFromRelation(nb, relation);
       }
-      if (res.length == 0) return null;
-      return {"res":res, "type":type};
+    }
+
+    function changePvFromRelation(nb, relation) {
+      if(typeof relation.currentPvChanged == "undefined") {
+        relation.currentPvChanged = 0;
+      }
+      relation.currentPvChanged += nb;
+
+      if(typeof relation.$pvChangedTimer != "undefined") {
+        $timeout.cancel(relation.$pvChangedTimer);
+      }
+      relation.$pvChangedTimer = $timeout(function(relation) {
+        relation.data.pv += relation.currentPvChanged;
+        relation.currentPvChanged = 0;
+      }, 2000, true, relation);
+    }
+
+    function rollPowerDiceRAZ(power) {
+      power.$diceExecuted = {
+        attack: [],
+        degat: []
+      };
+    }
+
+    function rollAllPowerDice(power) {
+      power.$diceExecuted = {
+        attack: [],
+        degat: []
+      };
+
+      rollPowerDiceAttack(power);
+      rollPowerDiceDegat(power)
+    }
+
+    function rollPowerDiceAttack(power) {
+      var result = d20.roll(power.attackdice);
+      power.$diceExecuted.attack.push({result: result});
+    }
+
+    function rollPowerDiceDegat(power) {
+      var result = d20.roll(power.degatdice);
+      console.log(result);
+      power.$diceExecuted.degat.push({result: result});
     }
 
     initController();
