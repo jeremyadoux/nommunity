@@ -1,0 +1,25 @@
+{
+  "name": "Rencontre",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "jdrpnjs": {
+      "type": "hasMany",
+      "model": "Jdrpnj",
+      "foreignKey": "rencontreId",
+      "through": "RencontrePnjRelation"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

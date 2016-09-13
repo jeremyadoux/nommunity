@@ -1,0 +1,299 @@
+<div class="container" ng-controller="PNJController as vmPnj">
+
+  <div class="block-header">
+    <h2>PNJ JDR</h2>
+  </div>
+
+  <div class="row">
+    <div class="card">
+      <div class="card-header">
+        <h2>Créer un nouveau type de pnj <small>Remplissez un maximum de champs pour avoir un maximum d'information.</small></h2>
+      </div>
+
+      <div class="card-body card-padding">
+        <div class="row">
+          <form name="createPNJForm" role="form" novalidate>
+            <!--- Group 1 -->
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Nom</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.name">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Niveau</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.level">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Expérience</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.experience">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Type</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.type">
+              </div>
+            </div>
+            <!--- GRoup 2 -->
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Initiative</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.initiative">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Perception</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.perception">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Point de vie</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.pv">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Vit (Case)</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.move">
+              </div>
+            </div>
+            <!--- GRoup 3 -->
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">CA</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.ca">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Vigueur</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.vig">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                <label class="fg-label">Réflexes</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.reflex">
+              </div>
+            </div>
+            <div class="col-xs-3">
+              <div class="form-group fg-line">
+                  <label class="fg-label">Volonté</label>
+                  <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.volonte">
+              </div>
+            </div>
+            <!-- Group 4 -->
+            <div class="col-xs-2">
+              <div class="form-group fg-line">
+                <label class="fg-label">For</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.str">
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <div class="form-group fg-line">
+                <label class="fg-label">Dex</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.dex">
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <div class="form-group fg-line">
+                <label class="fg-label">Sag</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.sag">
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <div class="form-group fg-line">
+                <label class="fg-label">Con</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.con">
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <div class="form-group fg-line">
+                <label class="fg-label">Int</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.int">
+              </div>
+            </div>
+            <div class="col-xs-2">
+              <div class="form-group fg-line">
+                <label class="fg-label">Cha</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.cha">
+              </div>
+            </div>
+            <!-- Group 5 -->
+            <div class="col-xs-4">
+              <div class="form-group fg-line">
+                <label class="fg-label">Immunités</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.immunity">
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="form-group fg-line">
+                <label class="fg-label">Résistances</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.resistance">
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div class="form-group fg-line">
+                  <label class="fg-label">Vulnérabilités</label>
+                  <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.vulnerability">
+              </div>
+            </div>
+            <!-- Group 6 -->
+            <div class="col-xs-6">
+              <div class="form-group fg-line">
+                <label class="fg-label">Langues</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.language">
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="form-group fg-line">
+                <label class="fg-label">Alignement</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.alignement">
+              </div>
+            </div>
+            <!-- Group 7 -->
+            <div class="col-xs-12">
+              <div class="form-group fg-line">
+                <label class="fg-label">Equipements</label>
+                <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.equipement">
+              </div>
+            </div>
+            <!-- Group 8 -->
+            <div class="col-xs-12">
+              <div class="form-group fg-line">
+                  <label class="fg-label">Informations complémentaires</label>
+                  <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.formPNJ.informations">
+              </div>
+            </div>
+            <!-- Group 9 -->
+            <div class="col-xs-12">
+              <p class="f-500 c-black m-b-5">Pouvoirs</p><button class="btn bgm-red waves-effect" ng-click="vmPnj.addMorePower()"><i class="zmdi zmdi-plus"></i></button>
+              <div class="card" ng-repeat="power in vmPnj.formPNJ.power">
+                <div class="card-body card-padding">
+                  <div class="row">
+                    <div class="col-xs-3">
+                      <div class="form-group fg-line">
+                        <label class="fg-label">Nom</label>
+                        <input class="input-sm form-control fg-input" type="text" ng-model="power.name">
+                      </div>
+                    </div>
+                    <div class="col-xs-3">
+                      <div class="form-group fg-line">
+                        <label class="fg-label">Dés d'attaques + bonus</label>
+                        <input class="input-sm form-control fg-input" type="text" ng-model="power.attackdice">
+                      </div>
+                    </div>
+                    <div class="col-xs-3">
+                      <div class="form-group fg-line">
+                        <label class="fg-label">Contre</label>
+                        <input class="input-sm form-control fg-input" type="text" ng-model="power.versus">
+                      </div>
+                    </div>
+                    <div class="col-xs-3">
+                      <div class="form-group fg-line">
+                        <label class="fg-label">Dés de dégats + bonus</label>
+                        <input class="input-sm form-control fg-input" type="text" ng-model="power.degatdice">
+                      </div>
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="form-group fg-line">
+                        <label class="fg-label">Description</label>
+                        <input class="input-sm form-control fg-input" type="text" ng-model="power.description">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ul class="list-unstyled clearfix wpb-actions">
+              <li class="pull-right"><button class="btn btn-primary btn-sm m-t-10 waves-effect" type="submit" ng-click="vmPnj.saveFormAction(createPNJForm)">Submit</button></li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6" ng-repeat="pnj in vmPnj.pnjList">
+      <div class="card">
+        <div class="card-header">
+          <h2>{{pnj.name}} Niveau {{pnj.level}}<small>Type : {{pnj.experience}} EXP</small></h2>
+
+          <ul class="actions">
+            <li uib-dropdown="" class="dropdown" style="">
+              <a aria-expanded="false" uib-dropdown-toggle="" href="" class="dropdown-toggle" aria-haspopup="true">
+                <i class="zmdi zmdi-more-vert"></i>
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href ng-click="vmPnj.edit(pnj)">Edit</a>
+                </li>
+                <li>
+                  <a href="">Delete</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-body card-padding">
+          <div class="row">
+            <div class="col-sm-6"><span class="f-500 c-black m-b-5">Initiative:</span> +{{pnj.initiative}}</div>
+            <div class="col-sm-6"><span class="f-500 c-black m-b-5">Perception:</span> +{{pnj.perception}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <span class="f-500 c-black m-b-5">PV:</span> {{pnj.pv}};
+              <span class="f-500 c-black m-b-5">Peril:</span> {{vmPnj.getPeril(pnj.pv)}}
+            </div>
+            <div class="col-sm-6">
+              <span class="f-500 c-black m-b-5">VD:</span> {{pnj.move}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3"><span class="f-500 c-black m-b-5">CA:</span> {{pnj.ca}}</div>
+            <div class="col-sm-3"><span class="f-500 c-black m-b-5">Vigueur:</span> {{pnj.vig}}</div>
+            <div class="col-sm-3"><span class="f-500 c-black m-b-5">Réflexes:</span> {{pnj.reflex}}</div>
+            <div class="col-sm-3"><span class="f-500 c-black m-b-5">Volonté:</span> {{pnj.volonte}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"><span class="f-500 c-black m-b-5">Immunité:</span> {{pnj.immunity}}</div>
+            <div class="col-sm-4"><span class="f-500 c-black m-b-5">Résistance:</span> {{pnj.resistance}}</div>
+            <div class="col-sm-4"><span class="f-500 c-black m-b-5">Vulnérabilités:</span> {{pnj.vulnerability}}</div>
+          </div>
+          <div class="row power-class-row" ng-repeat="power in pnj.power">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-12"><span class="f-500 c-black m-b-5">{{power.name}}</span></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <span class="f-500 c-black m-b-5">Attaque:</span> {{power.attackdice}} contre {{power.versus}}
+                </div>
+                <div class="col-sm-6">
+                  <span class="f-500 c-black m-b-5">Dégats:</span> {{power.degatdice}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  {{power.description}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <uib-pagination total-items="vmPnj.totalItems" ng-model="vmPnj.currentPnjPage" ng-change="vmPnj.setPage()"></uib-pagination>
+    </div>
+  </div>
+</div>

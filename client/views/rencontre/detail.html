@@ -1,0 +1,93 @@
+<div class="container" ng-controller="rencontreDetailController as vmRD">
+  <div class="card">
+    <div class="card-header">
+      <h2>{{vmRD.rencontre.name}}</h2>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body card-padding">
+      <div class="row">
+        <div class="col-sm-3">
+          <button class="btn btn-primary waves-effect" ng-click="vmRD.sendAllInitiative()">Send Initiative</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-body card-padding">
+      <div class="row">
+        <div class="col-sm-6" ng-repeat="relation in vmRD.rencontre.relation">
+          <div class="card">
+            <div class="card-header">
+              <h2>{{relation.jdrrelation.jdrpnj.name}} Niveau {{relation.jdrpnj.level}}<small>Type : {{relation.jdrpnj.experience}} EXP</small></h2>
+
+              <ul class="actions">
+                <li uib-dropdown="" class="dropdown" style="">
+                  <a aria-expanded="false" uib-dropdown-toggle="" href="" class="dropdown-toggle" aria-haspopup="true">
+                    <i class="zmdi zmdi-more-vert"></i>
+                  </a>
+
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                      <a href ng-click="vmrelation.jdrpnj.edit(pnj)">Edit</a>
+                    </li>
+                    <li>
+                      <a href="">Delete</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card-body card-padding">
+              <div class="row">
+                <div class="col-sm-6"><span class="f-500 c-black m-b-5">Initiative:</span> +{{relation.jdrpnj.initiative}}</div>
+                <div class="col-sm-6"><span class="f-500 c-black m-b-5">Perception:</span> +{{relation.jdrpnj.perception}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <span class="f-500 c-black m-b-5">PV:</span> {{relation.jdrpnj.pv}};
+                  <span class="f-500 c-black m-b-5">Peril:</span> {{vmRD.getPeril(relation.jdrpnj.pv)}}
+                </div>
+                <div class="col-sm-6">
+                  <span class="f-500 c-black m-b-5">VD:</span> {{relation.jdrpnj.move}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><span class="f-500 c-black m-b-5">CA:</span> {{relation.jdrpnj.ca}}</div>
+                <div class="col-sm-3"><span class="f-500 c-black m-b-5">Vigueur:</span> {{relation.jdrpnj.vig}}</div>
+                <div class="col-sm-3"><span class="f-500 c-black m-b-5">Réflexes:</span> {{relation.jdrpnj.reflex}}</div>
+                <div class="col-sm-3"><span class="f-500 c-black m-b-5">Volonté:</span> {{relation.jdrpnj.volonte}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4"><span class="f-500 c-black m-b-5">Immunité:</span> {{relation.jdrpnj.immunity}}</div>
+                <div class="col-sm-4"><span class="f-500 c-black m-b-5">Résistance:</span> {{relation.jdrpnj.resistance}}</div>
+                <div class="col-sm-4"><span class="f-500 c-black m-b-5">Vulnérabilités:</span> {{relation.jdrpnj.vulnerability}}</div>
+              </div>
+              <div class="row power-class-row" ng-repeat="power in relation.jdrpnj.power">
+                <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-12"><span class="f-500 c-black m-b-5">{{power.name}}</span></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <span class="f-500 c-black m-b-5">Attaque:</span> {{power.attackdice}} contre {{power.versus}}
+                    </div>
+                    <div class="col-sm-6">
+                      <span class="f-500 c-black m-b-5">Dégats:</span> {{power.degatdice}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      {{power.description}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="sidebar-inner c-overflow">
+  <div class="profile-menu" ng-controller="UserProfileCtrl as upCtrl">
+    <a href="" toggle-submenu>
+      <div class="profile-pic">
+        <img src="img/profile-pics/1.jpg" alt="">
+      </div>
+
+      <div class="profile-info">
+        {{$root.currentUser.username}}
+
+        <i class="zmdi zmdi-caret-down"></i>
+      </div>
+    </a>
+
+    <ul class="main-menu">
+      <li>
+        <a href="" ng-click="upCtrl.logoutAction()"><i class="zmdi zmdi-time-restore"></i> Logout</a>
+      </li>
+    </ul>
+  </div>
+
+  <ul class="main-menu">
+
+    <li data-ui-sref-active="active"><a data-ui-sref="home" data-ng-click="mactrl.sidebarStat($event)"><i
+      class="zmdi zmdi-home"></i> Home</a></li>
+    <li data-ui-sref-active="active"><a data-ui-sref="directory.news" data-ng-click="mactrl.sidebarStat($event)"><i
+      class="zmdi zmdi-home"></i> News</a></li>
+    <li data-ui-sref-active="active"><a data-ui-sref="directory.jdrpnj" data-ng-click="mactrl.sidebarStat($event)"><i
+      class="zmdi zmdi-home"></i> JDR pnj</a></li>
+    <li data-ui-sref-active="active"><a data-ui-sref="directory.rencontre" data-ng-click="mactrl.sidebarStat($event)"><i
+      class="zmdi zmdi-home"></i> JDR rencontre</a></li>
+    <li data-ui-sref-active="active"><a data-ui-sref="directory.rencontreCreate" data-ng-click="mactrl.sidebarStat($event)"><i
+      class="zmdi zmdi-home"></i> Create JDR rencontre</a></li>
+  </ul>
+</div>

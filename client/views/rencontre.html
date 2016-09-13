@@ -1,0 +1,35 @@
+<div class="container" ng-controller="RencontreCtrl as vmRencontre">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <button class="btn btn-primary waves-effect" ng-click="">Create new rencontre</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6" ng-repeat="rencontre in vmRencontre.rencontreList">
+      <div class="card">
+        <div class="card-header ch-alt m-b-20">
+          <h2><a data-ui-sref="directory.rencontreDetail({rencontreId: rencontre.id})">{{rencontre.name}}</a></h2>
+        </div>
+        <div class="card-body card-padding">
+          <div class="row">
+            <div class="col-sm-6"><span class="f-500 c-black m-b-5">Level:</span> {{vmRencontre.calculLevelRencontre(rencontre)}}</div>
+            <div class="col-sm-6"><span class="f-500 c-black m-b-5">Nb Pnj:</span> {{vmRencontre.calculNbPnjRencontre(rencontre)}}</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="list-group">
+                <a class="list-group-item" href ng-repeat="pnj in rencontre.jdrpnjs"><span class="badge">Level {{pnj.level}}</span> {{pnj.name}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

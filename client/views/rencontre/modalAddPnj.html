@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add PNJ</h4>
+</div>
+<div class="modal-body" ng-controller="PNJController as vmPnj">
+  <div class="form-group fg-line">
+    <label class="fg-label">Recherche</label>
+    <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.filter">
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Level</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="pnj in vmPnj.pnjList">
+        <td>
+          <button ng-click="vmRC.addPnj(pnj)" class="btn btn-primary btn-sm m-t-10 waves-effect" type="button">Add</button>
+          {{pnj.name}}
+        </td>
+        <td>
+          {{pnj.level}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-12">
+    <uib-pagination total-items="vmPnj.totalItems" ng-model="vmPnj.currentPnjPage" ng-change="vmPnj.setPage()"></uib-pagination>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-link" ng-click="vmRC.closeModal()">Ajouter</button>
+  <button class="btn btn-link" ng-click="vmRC.closeModal()">Cancel</button>
+</div>

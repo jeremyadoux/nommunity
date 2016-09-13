@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../node_modules/loopback-ds-timestamp-mixin",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "Customer": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Content": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "News": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Comment": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "Like": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "Jdrpnj": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Jdrpower": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "Rencontre": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "RencontrePnjRelation": {
+    "dataSource": "mongo",
+    "public": true
+  }
+}

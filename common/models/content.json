@@ -1,0 +1,68 @@
+{
+  "name": "Content",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "deleted": {
+      "type": "date"
+    },
+    "isDelete": {
+      "type": "number",
+      "default": "0"
+    },
+    "status": {
+      "type": "number",
+      "required": true,
+      "default": "1"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "author": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": "authorId",
+      "required": true
+    },
+    "comments": {
+      "type": "hasMany",
+      "model": "Comment",
+      "polymorphic": {
+        "as": "commenteable",
+        "foreignKey": "commenteableId",
+        "discriminator": "commenteableType"
+      }
+    },
+    "likes": {
+      "type": "hasMany",
+      "model": "Like",
+      "polymorphic": {
+        "as": "likeable",
+        "foreignKey": "likeableId",
+        "discriminator": "likeableType"
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

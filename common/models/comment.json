@@ -1,0 +1,28 @@
+{
+  "name": "Comment",
+  "base": "Content",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "commenteable": {
+      "type": "belongsTo",
+      "polymorphic": {
+        "foreignKey": "commenteableId",
+        "discriminator": "commenteableType"
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

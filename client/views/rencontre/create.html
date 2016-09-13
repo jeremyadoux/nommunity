@@ -1,0 +1,102 @@
+<div class="container" ng-controller="RencontreCreate as vmRC">
+  <div class="card">
+    <div class="card-header">
+      <h2>Create rencontre</h2>
+    </div>
+    <div class="card-body card-padding">
+      <div class="row">
+        <form name="createRencontreForm" role="form" novalidate>
+          <div class="col-xs-12">
+            <div class="form-group fg-line">
+              <label class="fg-label">Nom</label>
+              <input class="input-sm form-control fg-input" type="text" ng-model="vmRC.formRencontre.name">
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-3">
+                <button class="btn btn-primary waves-effect" ng-click="vmRC.saveAction(createRencontreForm)">Save rencontre</button>
+              </div>
+              <div class="col-xs-3">
+                <button class="btn btn-primary waves-effect" ng-click="vmRC.openModalAddPnj()">Add PNJ</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6" ng-repeat="pnj in vmRC.formRencontre.pnjList">
+                <div class="card">
+                  <div class="card-header">
+                    <h2>{{pnj.name}} Niveau {{pnj.level}}<small>Type : {{pnj.experience}} EXP</small></h2>
+
+                    <ul class="actions">
+                      <li uib-dropdown="" class="dropdown" style="">
+                        <a aria-expanded="false" uib-dropdown-toggle="" href="" class="dropdown-toggle" aria-haspopup="true">
+                          <i class="zmdi zmdi-more-vert"></i>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right">
+                          <li>
+                            <a href ng-click="vmRC.addPnj(pnj)">Add more</a>
+                          </li>
+                          <li>
+                            <a href ng-click="vmRC.removePnj(pnj)">Remove</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="card-body card-padding">
+                    <div class="row">
+                      <div class="col-sm-6"><span class="f-500 c-black m-b-5">Initiative:</span> +{{pnj.initiative}}</div>
+                      <div class="col-sm-6"><span class="f-500 c-black m-b-5">Perception:</span> +{{pnj.perception}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <span class="f-500 c-black m-b-5">PV:</span> {{pnj.pv}};
+                        <span class="f-500 c-black m-b-5">Peril:</span> {{vmRC.getPeril(pnj.pv)}}
+                      </div>
+                      <div class="col-sm-6">
+                        <span class="f-500 c-black m-b-5">VD:</span> {{pnj.move}}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-3"><span class="f-500 c-black m-b-5">CA:</span> {{pnj.ca}}</div>
+                      <div class="col-sm-3"><span class="f-500 c-black m-b-5">Vigueur:</span> {{pnj.vig}}</div>
+                      <div class="col-sm-3"><span class="f-500 c-black m-b-5">Réflexes:</span> {{pnj.reflex}}</div>
+                      <div class="col-sm-3"><span class="f-500 c-black m-b-5">Volonté:</span> {{pnj.volonte}}</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4"><span class="f-500 c-black m-b-5">Immunité:</span> {{pnj.immunity}}</div>
+                      <div class="col-sm-4"><span class="f-500 c-black m-b-5">Résistance:</span> {{pnj.resistance}}</div>
+                      <div class="col-sm-4"><span class="f-500 c-black m-b-5">Vulnérabilités:</span> {{pnj.vulnerability}}</div>
+                    </div>
+                    <div class="row power-class-row" ng-repeat="power in pnj.power">
+                      <div class="col-sm-12">
+                        <div class="row">
+                          <div class="col-sm-12"><span class="f-500 c-black m-b-5">{{power.name}}</span></div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <span class="f-500 c-black m-b-5">Attaque:</span> {{power.attackdice}} contre {{power.versus}}
+                          </div>
+                          <div class="col-sm-6">
+                            <span class="f-500 c-black m-b-5">Dégats:</span> {{power.degatdice}}
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            {{power.description}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

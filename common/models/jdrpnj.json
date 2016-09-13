@@ -1,0 +1,130 @@
+{
+  "name": "Jdrpnj",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "level": {
+      "type": "number",
+      "required": true
+    },
+    "initiative": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "perception": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "pv": {
+      "type": "number",
+      "required": true
+    },
+    "ca": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "vig": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "reflex": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "volonte": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "move": {
+      "type": "number",
+      "required": true,
+      "default": "6"
+    },
+    "experience": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "str": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "dex": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "sag": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "con": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "int": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "cha": {
+      "type": "number",
+      "required": true,
+      "default": "0"
+    },
+    "immunity": {
+      "type": "string"
+    },
+    "resistance": {
+      "type": "string"
+    },
+    "vulnerability": {
+      "type": "string"
+    },
+    "equipement": {
+      "type": "string"
+    },
+    "alignement": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "informations": {
+      "type": "string"
+    },
+    "power": {
+      "type": [
+        "Jdrpower"
+      ],
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "rencontres": {
+      "type": "hasMany",
+      "model": "Rencontre",
+      "foreignKey": "jdrpnjId",
+      "through": "RencontrePnjRelation"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
