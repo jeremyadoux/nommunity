@@ -46,4 +46,5 @@ crashlytics-build.properties
 fabric.properties
 
 client/vendors/bower_components
+vendors/bower_components
 
