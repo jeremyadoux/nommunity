@@ -25,7 +25,11 @@
         num = 0;
 
       if(verbose) {
-        return result;
+        for (var i in result) {
+          num += result[i];
+        }
+
+        return {total: num, verbose: result};
       } else {
         for (var i in result) {
           num += result[i];

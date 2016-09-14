@@ -6,9 +6,9 @@
     .controller('rencontreDetailController', rencontreDetailController);
 
 
-  rencontreDetailController.$inject=['$stateParams', '$timeout', 'RencontreService'];
+  rencontreDetailController.$inject=['$stateParams', '$timeout', '$anchorScroll', 'RencontreService'];
 
-  function rencontreDetailController($stateParams, $timeout, RencontreService) {
+  function rencontreDetailController($stateParams, $timeout, $anchorScroll, RencontreService) {
     var vm = this;
 
     //VM method
@@ -21,10 +21,23 @@
     vm.rollPowerDiceAttack = rollPowerDiceAttack;
     vm.rollPowerDiceDegat = rollPowerDiceDegat;
     vm.rollPowerDiceRAZ = rollPowerDiceRAZ;
+    vm.sendSkillDice = sendSkillDice;
+    vm.addPlayerInitiative = addPlayerInitiative;
+    vm.goToCardPnj = goToCardPnj;
+    vm.startFight = startFight;
+    vm.nextPlayer = nextPlayer;
 
     //VM attribute
+    vm.addPlayerInArray = false;
+    vm.formPlayer = {
+      name: '',
+      initiative: 0
+    };
     vm.rencontreId = $stateParams.rencontreId || 0;
     vm.rencontre = {};
+    vm.initArray = [];
+    vm.playerList = [];
+    vm.fight = false;
 
     function initController() {
       loadRencontre();
@@ -50,6 +63,8 @@
         var relation = vm.rencontre.relation[i];
         sendInitiative(relation);
       }
+
+      prepareInitArray();
     }
 
     function sendInitiative(relation) {
@@ -122,14 +137,110 @@
     }
 
     function rollPowerDiceAttack(power) {
-      var result = d20.roll(power.attackdice);
-      power.$diceExecuted.attack.push({result: result});
+      if(typeof power.$diceExecuted == "undefined") {
+        power.$diceExecuted = {
+          attack: [],
+          degat: []
+        };
+      }
+
+      if(typeof power.attackdice != "undefined") {
+        var result = d20.roll(power.attackdice, true);
+        power.$diceExecuted.attack.push({result: result});
+      }
     }
 
     function rollPowerDiceDegat(power) {
-      var result = d20.roll(power.degatdice);
-      console.log(result);
-      power.$diceExecuted.degat.push({result: result});
+      if(typeof power.$diceExecuted == "undefined") {
+        power.$diceExecuted = {
+          attack: [],
+          degat: []
+        };
+      }
+      if(typeof power.degatdice != "undefined") {
+        var result = d20.roll(power.degatdice);
+        power.$diceExecuted.degat.push({result: result});
+      }
+    }
+
+    function sendSkillDice() {
+
+    }
+
+    function prepareInitArray() {
+      vm.playerList = [];
+
+      for(var i in vm.rencontre.relation) {
+        var relation = vm.rencontre.relation[i];
+        vm.playerList.push({initiative: relation.data.initiative, name: relation.jdrpnj.name, relation: relation, isCurrentPlayer:  false});
+      }
+
+      sortInitArray();
+    }
+
+    function sortInitArray() {
+      vm.playerList.sort(function(a, b) {
+        if(a.initiative > b.initiative) {
+          return -1;
+        }
+        if (a.initiative < b.initiative){
+          return 1;
+        }
+
+        return 0;
+      });
+    }
+
+    function addPlayerInitiative() {
+      vm.playerList.push({initiative: vm.formPlayer.initiative, name: vm.formPlayer.name, relation: false, isCurrentPlayer:  false});
+      sortInitArray();
+      vm.addPlayerInArray = false;
+      vm.formPlayer = {
+        name: '',
+        initiative: 0
+      }
+    }
+
+    function goToCardPnj(relation) {
+      $anchorScroll("pnj-card-"+relation.relationId);
+      jQuery("#pnj-card-"+relation.relationId).addClass('bgm-orange');
+      $timeout(function(relation) {
+        jQuery("#pnj-card-"+relation.relationId).removeClass('bgm-orange');
+      }, 1000, true, relation);
+    }
+
+    function startFight() {
+      vm.fight = {
+        round: 1,
+        currentPlayerIndex: 0
+      };
+
+      setReallyCurrentPlayer();
+    }
+
+    function nextPlayer() {
+      vm.fight.currentPlayerIndex++;
+
+
+      if(vm.fight.currentPlayerIndex >= vm.playerList.length) {
+        nextRound();
+      } else {
+        setReallyCurrentPlayer();
+      }
+    }
+
+    function nextRound() {
+      vm.fight.round++;
+      vm.fight.currentPlayerIndex = 0;
+
+      setReallyCurrentPlayer();
+    }
+
+    function setReallyCurrentPlayer() {
+      for(var i in vm.playerList) {
+        vm.playerList[i].isCurrentPlayer = false;
+      }
+      vm.playerList[vm.fight.currentPlayerIndex].isCurrentPlayer = true;
     }
 
     initController();

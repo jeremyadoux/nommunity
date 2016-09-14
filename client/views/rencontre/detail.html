@@ -7,8 +7,60 @@
   <div class="card">
     <div class="card-body card-padding">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-12">
           <button class="btn btn-primary waves-effect" ng-click="vmRD.sendAllInitiative()">Send Initiative</button>
+          <button class="btn btn-primary waves-effect" ng-click="vmRD.addPlayerInArray = true">Add player Init</button>
+          <button ng-show="!vmRD.fight" class="btn btn-primary waves-effect" ng-click="vmRD.startFight()">Start fight</button>
+          <button ng-show="vmRD.fight" class="btn btn-primary waves-effect" ng-click="vmRD.nextPlayer()">Next player</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2" ng-show="vmRD.fight">
+          <div class="row">
+            <span class="f-500 c-black m-b-5">Round : {{vmRD.fight.round}}</span>
+          </div>
+        </div>
+        <div class="col-sm-10">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Init</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="player in vmRD.playerList" ng-class="{'bgm-amber': player.isCurrentPlayer}">
+                  <td>{{player.name}}</td>
+                  <td>{{player.initiative}}</td>
+                  <td>
+                    <button ng-show="player.relation" class="btn btn-primary waves-effect" ng-click="vmRD.goToCardPnj(player.relation)">Go To</button>
+                  </td>
+                </tr>
+                <tr ng-show="vmRD.addPlayerInArray">
+                  <td>
+                    <div class="form-group">
+                      <div class="fg-line">
+                        <input type="text" placeholder="Player name" class="form-control input-sm" ng-model="vmRD.formPlayer.name">
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <div class="fg-line">
+                        <input type="text" placeholder="Player Initiative" class="form-control input-sm" ng-model="vmRD.formPlayer.initiative">
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <button class="btn btn-primary waves-effect" ng-click="vmRD.addPlayerInitiative()">Add</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -17,9 +69,9 @@
     <div class="card-body card-padding">
       <div class="row">
         <div class="col-sm-6" ng-repeat="relation in vmRD.rencontre.relation">
-          <div class="card">
+          <div class="card" id="pnj-card-{{relation.relationId}}">
             <div class="card-header">
-              <!--<h2>{{relation.jdrpnj.name}} Niveau {{relation.jdrpnj.level}}<small>Type : {{relation.jdrpnj.experience}} EXP</small></h2>-->
+              <h2>{{relation.jdrpnj.name}} Niveau {{relation.jdrpnj.level}}<small>Type : {{relation.jdrpnj.experience}} EXP</small></h2>
 
               <ul class="actions">
                 <li uib-dropdown="" class="dropdown" style="">
@@ -93,7 +145,7 @@
                     </div>
                     <div class="col-sm-12" ng-show="power.$diceExecuted.degat.length > 0">
                       <span class="f-500 c-green m-b-5">Attack:</span>
-                      <span class="c-green" ng-repeat="attack in power.$diceExecuted.attack">{{attack.result}} vs {{power.versus}} / </span>
+                      <span class="c-green" ng-repeat="attack in power.$diceExecuted.attack">{{attack.result.total}} ({{attack.result.verbose[0]}}) vs {{power.versus}} / </span>
                     </div>
                     <div class="col-sm-12" ng-show="power.$diceExecuted.degat.length > 0">
                       <span class="f-500 c-green m-b-5">Degats:</span>
