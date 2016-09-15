@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-sm-12">
           <button class="btn btn-primary waves-effect" ng-click="vmRD.sendAllInitiative()">Send Initiative</button>
-          <button class="btn btn-primary waves-effect" ng-click="vmRD.addPlayerInArray = true">Add player Init</button>
+          <button class="btn btn-primary waves-effect" ng-click="vmRD.addPlayerInitiative()">Add player Init</button>
           <button ng-show="!vmRD.fight" class="btn btn-primary waves-effect" ng-click="vmRD.startFight()">Start fight</button>
           <button ng-show="vmRD.fight" class="btn btn-primary waves-effect" ng-click="vmRD.nextPlayer()">Next player</button>
         </div>
@@ -32,30 +32,26 @@
               </thead>
               <tbody>
                 <tr ng-repeat="player in vmRD.playerList" ng-class="{'bgm-amber': player.isCurrentPlayer}">
-                  <td>{{player.name}}</td>
-                  <td>{{player.initiative}}</td>
+                  <td>
+                    <div ng-show="player.edit" class="form-group">
+                      <div class="fg-line">
+                        <input type="text" placeholder="Player name" class="form-control input-sm" ng-model="player.name">
+                      </div>
+                    </div>
+                    <span ng-hide="player.edit">{{player.name}}</span>
+                  </td>
+                  <td>
+                    <div ng-show="player.edit" class="form-group">
+                      <div class="fg-line">
+                        <input type="text" placeholder="Player Initiative" class="form-control input-sm" ng-model="player.initiative">
+                      </div>
+                    </div>
+                    <span ng-hide="player.edit">{{player.initiative}}</span>
+                  </td>
                   <td>
                     <button ng-show="player.relation" class="btn btn-primary waves-effect" ng-click="vmRD.goToCardPnj(player.relation)">Go To</button>
-                  </td>
-                </tr>
-                <tr ng-show="vmRD.addPlayerInArray">
-                  <td>
-                    <div class="form-group">
-                      <div class="fg-line">
-                        <input type="text" placeholder="Player name" class="form-control input-sm" ng-model="vmRD.formPlayer.name">
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="form-group">
-                      <div class="fg-line">
-                        <input type="text" placeholder="Player Initiative" class="form-control input-sm" ng-model="vmRD.formPlayer.initiative">
-                      </div>
-                    </div>
-
-                  </td>
-                  <td>
-                    <button class="btn btn-primary waves-effect" ng-click="vmRD.addPlayerInitiative()">Add</button>
+                    <button ng-show="!player.relation && !player.edit" class="btn btn-primary waves-effect" ng-click="player.edit = true">Edit</button>
+                    <button ng-show="player.edit" class="btn btn-primary waves-effect" ng-click="vmRD.validChangeOnPlayerInitiative(player)">Valid</button>
                   </td>
                 </tr>
               </tbody>
@@ -142,6 +138,7 @@
                       <button class="btn btn-primary waves-effect" ng-click="vmRD.rollPowerDiceAttack(power)">Roll Attack</button>
                       <button class="btn btn-primary waves-effect" ng-click="vmRD.rollPowerDiceDegat(power)">Roll Degat</button>
                       <button class="btn btn-primary waves-effect" ng-click="vmRD.rollPowerDiceRAZ(power)">Roll RAZ</button>
+                      <button class="btn btn-primary waves-effect" ng-click="vmRD.addPowerEffect(power, relation)">Effect</button>
                     </div>
                     <div class="col-sm-12" ng-show="power.$diceExecuted.degat.length > 0">
                       <span class="f-500 c-green m-b-5">Attack:</span>

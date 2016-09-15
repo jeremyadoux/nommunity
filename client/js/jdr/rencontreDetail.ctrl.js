@@ -6,10 +6,11 @@
     .controller('rencontreDetailController', rencontreDetailController);
 
 
-  rencontreDetailController.$inject=['$stateParams', '$timeout', '$anchorScroll', 'RencontreService'];
+  rencontreDetailController.$inject=['$stateParams', '$timeout', '$anchorScroll', '$uibModal', '$scope', 'RencontreService'];
 
-  function rencontreDetailController($stateParams, $timeout, $anchorScroll, RencontreService) {
+  function rencontreDetailController($stateParams, $timeout, $anchorScroll, $uibModal, $scope, RencontreService) {
     var vm = this;
+    var modalInstance;
 
     //VM method
     vm.getPeril = getPeril;
@@ -26,17 +27,18 @@
     vm.goToCardPnj = goToCardPnj;
     vm.startFight = startFight;
     vm.nextPlayer = nextPlayer;
+    vm.validChangeOnPlayerInitiative = validChangeOnPlayerInitiative;
+    vm.addPowerEffect = addPowerEffect;
+    vm.addEffectModal = addEffectModal;
+    vm.closeModal = closeModal;
 
     //VM attribute
-    vm.addPlayerInArray = false;
-    vm.formPlayer = {
-      name: '',
-      initiative: 0
-    };
     vm.rencontreId = $stateParams.rencontreId || 0;
     vm.rencontre = {};
     vm.initArray = [];
     vm.playerList = [];
+    vm.currentEffectToAdd = {};
+    vm.effectList = [];
     vm.fight = false;
 
     function initController() {
@@ -47,6 +49,7 @@
       RencontreService.loadByRelationId(vm.rencontreId).then(function(response) {
         vm.rencontre = response;
         initializeAllPnj();
+        sendAllInitiative();
       });
     }
 
@@ -172,7 +175,7 @@
 
       for(var i in vm.rencontre.relation) {
         var relation = vm.rencontre.relation[i];
-        vm.playerList.push({initiative: relation.data.initiative, name: relation.jdrpnj.name, relation: relation, isCurrentPlayer:  false});
+        vm.playerList.push({initiative: relation.data.initiative, name: relation.jdrpnj.name, relation: relation, isCurrentPlayer:  false, edit: false, effectOwner: [], effectTarget: []});
       }
 
       sortInitArray();
@@ -192,13 +195,12 @@
     }
 
     function addPlayerInitiative() {
-      vm.playerList.push({initiative: vm.formPlayer.initiative, name: vm.formPlayer.name, relation: false, isCurrentPlayer:  false});
+      vm.playerList.push({initiative: 0, name: '', relation: false, isCurrentPlayer:  false, edit: false, effectOwner: [], effectTarget: []});
+    }
+
+    function validChangeOnPlayerInitiative(player) {
+      player.edit = false;
       sortInitArray();
-      vm.addPlayerInArray = false;
-      vm.formPlayer = {
-        name: '',
-        initiative: 0
-      }
     }
 
     function goToCardPnj(relation) {
@@ -241,6 +243,37 @@
         vm.playerList[i].isCurrentPlayer = false;
       }
       vm.playerList[vm.fight.currentPlayerIndex].isCurrentPlayer = true;
+    }
+
+    function addPowerEffect(power, relation) {
+      vm.currentModalEffectData = {
+        power: power
+      };
+
+      for(var i in vm.playerList) {
+        if(vm.playerList[i].relation == relation) {
+          vm.currentModalEffectData.player = vm.playerList[i];
+        }
+      }
+
+      modalInstance = $uibModal.open({
+        templateUrl: 'views/rencontre/modalAddEffect.html',
+        controllerAs: 'vmRD',
+        bindToController: true,
+        scope: $scope
+      });
+    }
+
+    function addEffectModal() {
+      vm.currentModalEffectData.player.effectOwner.push(vm.currentModalEffectData);
+      vm.currentModalEffectData.playerTarget.effectTarget.push(vm.currentModalEffectData);
+      vm.effectList.push(vm.currentModalEffectData);
+      vm.currentModalEffectData = {};
+      modalInstance.close();
+    }
+
+    function closeModal() {
+      modalInstance.close();
     }
 
     initController();
