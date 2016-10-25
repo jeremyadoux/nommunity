@@ -24,6 +24,11 @@
       "required": true,
       "default": "0"
     },
+    "skill": {
+      "type": [
+        "Jdrskill"
+      ]
+    },
     "pv": {
       "type": "number",
       "required": true

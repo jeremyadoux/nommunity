@@ -69,5 +69,9 @@
   "RencontrePnjRelation": {
     "dataSource": "mongo",
     "public": true
+  },
+  "Jdrskill": {
+    "dataSource": "mongo",
+    "public": false
   }
 }

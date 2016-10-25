@@ -2,7 +2,7 @@
   <h4 class="modal-title">Add Effect</h4>
 </div>
 <div class="modal-body">
-  <p class="c-black f-500 m-b-20">Basic Example</p>
+  <p class="c-black f-500 m-b-20">Add an effect</p>
   <div class="form-group">
     <div class="fg-line">
       <div class="select">
@@ -13,7 +13,12 @@
   </div>
   <div class="form-group">
     <div class="fg-line">
-      <input type="text" placeholder="Duration (0 infinite)" ng-model="vmRD.currentModalEffectData.duration" class="form-control input-sm">
+      <textarea class="form-control" data-auto-size placeholder="Description" ng-model="vmRD.currentModalEffectData.description"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="fg-line">
+      <input type="text" placeholder="Duration (0 infinite)" ng-model="vmRD.currentModalEffectData.round" class="form-control input-sm">
     </div>
   </div>
   <div class="form-group">
@@ -22,6 +27,15 @@
         <label for="ts1" class="ts-label">Sauvegarde annule</label>
         <input id="ts1" type="checkbox" hidden="hidden" ng-model="vmRD.currentModalEffectData.sauvegarde">
         <label for="ts1" class="ts-helper"></label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="fg-line">
+      <div class="toggle-switch">
+        <label for="ts2" class="ts-label">Effet positif</label>
+        <input id="ts2" type="checkbox" hidden="hidden" ng-model="vmRD.currentModalEffectData.positif">
+        <label for="ts2" class="ts-helper"></label>
       </div>
     </div>
   </div>

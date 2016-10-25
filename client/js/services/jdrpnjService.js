@@ -37,13 +37,14 @@
         int: data.int,
         cha: data.cha,
         immunity: data.immunity || '',
-        resistance: data.resistace || '',
+        resistance: data.resistance || '',
         vulnerability: data.vulnerability || '',
         equipement: data.equipement || '',
         alignement: data.alignement || '',
         language: data.language || '',
         informations: data.informations || '',
-        power: data.power || []
+        power: data.power || [],
+        skill: data.skill || []
       };
 
       return Jdrpnj.create(jdrPNJProtected)

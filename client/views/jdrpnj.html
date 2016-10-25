@@ -173,6 +173,28 @@
             </div>
             <!-- Group 9 -->
             <div class="col-xs-12">
+              <p class="f-500 c-black m-b-5">Compétences</p><button class="btn bgm-red waves-effect" ng-click="vmPnj.addMoreSkill()"><i class="zmdi zmdi-plus"></i></button>
+              <div class="card" ng-repeat="skill in vmPnj.formPNJ.skill">
+                <div class="card-body card-padding">
+                  <div class="row">
+                    <div class="col-xs-3">
+                      <div class="form-group fg-line">
+                        <label class="fg-label">Nom</label>
+                        <input class="input-sm form-control fg-input" type="text" ng-model="skill.name">
+                      </div>
+                    </div>
+                    <div class="col-xs-3">
+                      <div class="form-group fg-line">
+                        <label class="fg-label">Valeur</label>
+                        <input class="input-sm form-control fg-input" type="text" ng-model="skill.value">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Group 10 -->
+            <div class="col-xs-12">
               <p class="f-500 c-black m-b-5">Pouvoirs</p><button class="btn bgm-red waves-effect" ng-click="vmPnj.addMorePower()"><i class="zmdi zmdi-plus"></i></button>
               <div class="card" ng-repeat="power in vmPnj.formPNJ.power">
                 <div class="card-body card-padding">

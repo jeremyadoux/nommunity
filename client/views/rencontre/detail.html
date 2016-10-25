@@ -15,12 +15,48 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-2" ng-show="vmRD.fight">
+        <div class="col-sm-4">
+          <div class="row" ng-show="vmRD.fight">
+            <div class="col-sm-12 m-b-20">
+              <span class="f-500 c-black m-b-5"><button class="btn btn-primary waves-effect" ng-click="vmRD.stopAlertTimer = !vmRD.stopAlertTimer">Stop Alert</button></span>
+            </div>
+            <div class="col-sm-12 m-b-20">
+              <span class="f-500 c-black m-b-5">Nb second/turn : <input type="text" ng-model="vmRD.secondePerTurn" /> </span>
+            </div>
+            <div class="col-sm-12 m-b-20">
+              <span class="f-500 c-black m-b-5">Current timer turn : {{vmRD.transformTimeToHourMinutesSeconde(vmRD.fight.currentTimer)}}</span>
+            </div>
+            <div class="col-sm-12 m-b-20">
+              <span class="f-500 c-black m-b-5">Total time : {{vmRD.transformTimeToHourMinutesSeconde(vmRD.fight.totalTime)}}</span>
+            </div>
+            <div class="col-sm-12 m-b-20">
+              <span class="f-500 c-black m-b-5">Round : {{vmRD.fight.round}}</span>
+            </div>
+          </div>
           <div class="row">
-            <span class="f-500 c-black m-b-5">Round : {{vmRD.fight.round}}</span>
+            <div class="col-sm-12 m-b-20">
+              <p class="f-500 m-b-20 c-black">Currents effects</p>
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat="effect in vmRD.playerList[vmRD.fight.currentPlayerIndex].effectTarget" ng-class="{'disabled': effect.stopped}">
+                  <div class="row">
+                    <div class="col-sm-12 m-b-20">
+                      <span class="f-500 c-black m-b-5" ng-class="{'line-through': effect.stopped}">{{effect.description}}</span>
+                    </div>
+                    <div class="col-sm-12 m-b-20">
+                      <span ng-show="effect.savedDice" class="f-500 c-black m-b-5">Sauvegarde : {{effect.savedDice}}</span>
+                      <span ng-show="!effect.roundInfinite" class="f-500 c-black m-b-5">Round : {{effect.round}}</span>
+                    </div>
+                    <div class="col-sm-12 m-b-20">
+                      <button ng-show="effect.sauvegarde" class="btn btn-primary waves-effect" ng-click="effect.$sauvegardeDice()">Sauvegarde</button>
+                      <button class="btn btn-primary waves-effect" ng-click="effect.$remove()">Remove</button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="col-sm-10">
+        <div class="col-sm-8">
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -31,14 +67,35 @@
               </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="player in vmRD.playerList" ng-class="{'bgm-amber': player.isCurrentPlayer}">
+                <tr ng-repeat="player in vmRD.playerList" ng-show="!player.relation || !player.relation.data.dead" ng-class="{'bgm-amber': player.isCurrentPlayer}">
                   <td>
-                    <div ng-show="player.edit" class="form-group">
-                      <div class="fg-line">
-                        <input type="text" placeholder="Player name" class="form-control input-sm" ng-model="player.name">
+                    <div class="row">
+                      <div class="col-sm-12 m-b-20">
+                        <div ng-show="player.edit" class="form-group">
+                          <div class="fg-line">
+                            <input type="text" placeholder="Player name" class="form-control input-sm" ng-model="player.name">
+                          </div>
+                        </div>
+                        <span ng-hide="player.edit">{{player.name}}
+                          <span ng-show="player.relation">
+                            - <span class="f-500 m-b-5" ng-class="{'c-green': player.relation.data.pv > vmRD.getPeril(player.relation.jdrpnj.pv), 'c-red': player.relation.data.pv <= vmRD.getPeril(player.relation.jdrpnj.pv)}">PV {{player.relation.data.pv}}</span>
+                            - CA {{player.relation.jdrpnj.ca}}
+                            - Vig {{player.relation.jdrpnj.vig}}
+                            - Ref {{player.relation.jdrpnj.reflex}}
+                            - Vol {{player.relation.jdrpnj.volonte}}
+                          </span>
+                        </span>
+                      </div>
+                      <div class="col-sm-12 m-b-20" ng-show="player.relation">
+                        <i class="icon-pv zmdi zmdi-hc-fw c-green waves-effect" ng-class="{'zmdi-plus-circle': player.relation.method.pvmodeplus, 'zmdi-plus-circle-o': !player.relation.method.pvmodeplus}" ng-click="vmRD.changeModeToPlus(player.relation)"></i>
+                        <i class="icon-pv zmdi zmdi-hc-fw c-red waves-effect" ng-class="{'zmdi-minus-circle': player.relation.method.pvmodemoins, 'zmdi-minus-circle-outline': !player.relation.method.pvmodemoins}" ng-click="vmRD.changeModeToMoins(player.relation)"></i>
+                        <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(1, player.relation)">1</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(2, player.relation)">2</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(5, player.relation)">5</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(10, player.relation)">10</button>
+                        <span class="f-500 m-b-5 c-orange" ng-show="player.relation.currentPvChanged != 0">{{player.relation.currentPvChanged}}</span>
                       </div>
                     </div>
-                    <span ng-hide="player.edit">{{player.name}}</span>
                   </td>
                   <td>
                     <div ng-show="player.edit" class="form-group">
@@ -65,7 +122,7 @@
     <div class="card-body card-padding">
       <div class="row">
         <div class="col-sm-6" ng-repeat="relation in vmRD.rencontre.relation">
-          <div class="card" id="pnj-card-{{relation.relationId}}">
+          <div class="card" id="pnj-card-{{relation.relationId}}" ng-class="{'bgm-amber': relation.data.dead}">
             <div class="card-header">
               <h2>{{relation.jdrpnj.name}} Niveau {{relation.jdrpnj.level}}<small>Type : {{relation.jdrpnj.experience}} EXP</small></h2>
 
@@ -94,6 +151,17 @@
                   <span class="f-500 c-green m-b-5"> {{relation.data.initiative}}</span>
                 </div>
                 <div class="col-sm-6"><span class="f-500 c-black m-b-5">Perception:</span> +{{relation.jdrpnj.perception}}</div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="col-sm-6">
+                    <span class="f-500 c-black m-b-5">Compétences:</span>
+                    <input type="text" ng-model="relation.data.diceSkillTest" />
+                    <button class="btn btn-primary waves-effect" ng-click="vmRD.executeDiceRoll(relation)">Roll</button>
+                    <button class="btn btn-primary waves-effect" ng-click="vmRD.razDiceRoll(relation)">RAZ</button>
+                    <span class="c-green" ng-repeat="dice in relation.data.rolledDice">{{dice.result.total}} ({{dice.result.verbose[0]}}) / </span>
+                  </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
@@ -127,6 +195,16 @@
                 <div class="col-sm-4"><span class="f-500 c-black m-b-5">Résistance:</span> {{relation.jdrpnj.resistance}}</div>
                 <div class="col-sm-4"><span class="f-500 c-black m-b-5">Vulnérabilités:</span> {{relation.jdrpnj.vulnerability}}</div>
               </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <span class="f-500 c-black m-b-5">Description:</span>{{relation.jdrpnj.informations}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <span class="f-500 c-black m-b-5">Equipement:</span>{{relation.jdrpnj.equipement}}
+                </div>
+              </div>
               <div class="row power-class-row" ng-repeat="power in relation.jdrpnj.power">
                 <div class="col-sm-12">
                   <div class="row">
@@ -140,7 +218,7 @@
                       <button class="btn btn-primary waves-effect" ng-click="vmRD.rollPowerDiceRAZ(power)">Roll RAZ</button>
                       <button class="btn btn-primary waves-effect" ng-click="vmRD.addPowerEffect(power, relation)">Effect</button>
                     </div>
-                    <div class="col-sm-12" ng-show="power.$diceExecuted.degat.length > 0">
+                    <div class="col-sm-12" ng-show="power.$diceExecuted.attack.length > 0">
                       <span class="f-500 c-green m-b-5">Attack:</span>
                       <span class="c-green" ng-repeat="attack in power.$diceExecuted.attack">{{attack.result.total}} ({{attack.result.verbose[0]}}) vs {{power.versus}} / </span>
                     </div>

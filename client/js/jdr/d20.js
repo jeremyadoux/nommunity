@@ -25,11 +25,13 @@
         num = 0;
 
       if(verbose) {
+        var str = "";
         for (var i in result) {
           num += result[i];
+          str = str + "/"+result[i];
         }
 
-        return {total: num, verbose: result};
+        return {total: num, verbose: [str]};
       } else {
         for (var i in result) {
           num += result[i];
@@ -48,9 +50,10 @@
      * @return Array
      */
     verboseRoll: function(dice) {
-      var amount = 1,
+      var amount = [],
         mod = 0,
         results = [],
+        returnedDice = [],
         match,
         num,
         modifiers;
@@ -59,39 +62,47 @@
         throw new Error('Missing dice parameter.');
       }
 
+      if (!isNaN(dice) &&
+        parseInt(Number(dice)) == dice &&
+        !isNaN(parseInt(dice, 10))) {
+        return parseInt(dice);
+      }
+
       if (typeof dice == 'string') {
-        match = dice.match(/^\s*(\d+)?\s*d\s*(\d+)\s*(.*?)\s*$/);
-        if (match) {
-          if (match[1]) {
-            amount = parseInt(match[1]);
+
+        var listDice = dice.split("+");
+
+        for(var diceList = 0; diceList < listDice.length; diceList++) {
+          if(!isNaN(listDice[diceList]) &&
+            parseInt(Number(listDice[diceList])) == listDice[diceList] &&
+            !isNaN(parseInt(listDice[diceList], 10))) {
+            mod += parseInt(listDice[diceList]);
           }
-          if (match[2]) {
-            dice = parseInt(match[2]);
-          }
-          if (match[3]) {
-            modifiers = match[3].match(/([+-]\s*\d+)/g);
-            for (var i = 0; i < modifiers.length; i++) {
-              mod += parseInt(modifiers[i].replace(/\s/g, ''));
+
+          match = listDice[diceList].match(/^\s*(\d+)?\s*d\s*(\d+)\s*(.*?)\s*$/);
+          if (match) {
+            if (match[1]) {
+              amount.push(parseInt(match[1]));
+            }
+            if (match[2]) {
+              returnedDice.push(parseInt(match[2]));
             }
           }
-        } else {
-          parseInt(dice);
         }
       }
 
-      for (var i = 0; i < amount; i++) {
+      for (var i = 0; i < returnedDice.length; i++) {
         /* We dont want to ruin verbose, so we dont skip the for loop */
-        if(dice !== 0){
-          num = Math.floor(Math.random() * dice + 1);
-        }else{
-          num = 0;
+        for(var j = 0; j < amount[i]; j++) {
+          if (returnedDice[i] !== 0) {
+            num = Math.floor(Math.random() * returnedDice[i] + 1);
+          } else {
+            num = 0;
+          }
+          results.push(num);
         }
-        results.push(num);
       }
 
-      results = results.sort(function(a, b) {
-        return a - b;
-      });
       if (mod != 0) {
         results.push(mod);
       }

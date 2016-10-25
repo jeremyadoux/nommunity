@@ -13,6 +13,7 @@
 
     //Method
     vm.addMorePower = addMorePower;
+    vm.addMoreSkill = addMoreSkill;
     vm.saveFormAction = saveFormAction;
     vm.edit = edit;
     vm.setPage = setPage;
@@ -26,6 +27,12 @@
           versus: '',
           degatdice: '',
           description: ''
+        }
+      ],
+      skill: [
+        {
+          name: '',
+          value: 0
         }
       ]
     };
@@ -98,6 +105,12 @@
                   degatdice: '',
                   description: ''
                 }
+              ],
+              skill: [
+                {
+                  name: '',
+                  value: 0
+                }
               ]
             };
           });
@@ -122,6 +135,12 @@
                     degatdice: '',
                     description: ''
                   }
+                ],
+                skill: [
+                  {
+                    name: '',
+                    value: 0
+                  }
                 ]
               };
             }
@@ -141,12 +160,27 @@
       });
     }
 
+    function addMoreSkill() {
+      vm.formPNJ.skill.push({
+        name: '',
+        value: ''
+      });
+    }
+
     function getPeril(pv) {
       return Math.floor(pv/2);
     }
 
     function edit(pnj) {
       vm.formPNJ = pnj;
+      if(typeof vm.formPNJ.skill == "undefined" || vm.formPNJ.skill.length <= 0) {
+        vm.formPNJ.skill = [
+          {
+            name: '',
+            value: 0
+          }
+        ];
+      }
     }
   }
 
