@@ -7,9 +7,7 @@ module.exports = function (app) {
   var RoleMapping = app.models.RoleMapping;
 
   var userList = [
-    {username: 'jadoux', email: 'jeremy.adoux@gmail.com', password: 'c', isAdmin: true},
-    {username: 'user1', email: 'user1@yopmail.com', password: 'c', isAdmin: false},
-    {username: 'user2', email: 'user2@yopmail.com', password: 'c', isAdmin: false}
+    {username: 'jadoux', firstname: 'jérémy', lastname: 'adoux', email: 'jeremy.adoux@gmail.com', password: 'c', isAdmin: true}
   ];
 
   //create the admin role
