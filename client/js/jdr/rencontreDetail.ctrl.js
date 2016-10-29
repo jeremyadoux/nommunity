@@ -5,7 +5,6 @@
     .module('app')
     .controller('rencontreDetailController', rencontreDetailController);
 
-
   rencontreDetailController.$inject=['$stateParams', '$timeout','$interval', '$anchorScroll', '$uibModal', '$scope', 'RencontreService', 'growlService'];
 
   function rencontreDetailController($stateParams, $timeout, $interval, $anchorScroll, $uibModal, $scope, RencontreService, growlService) {
@@ -60,24 +59,11 @@
     }
 
     function initializeAllPj() {
-      vm.playerList.push({initiative: 0, name: 'Elise', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'MyMy', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'Anton', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'Antony', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'Manon', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'Laure', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'Victoria', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'Fabrice', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'Jérémy', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
-      vm.playerList.push({initiative: 0, name: 'Luz', relation: false, isCurrentPlayer:  false, edit: true, effectOwner: [], effectTarget: []});
     }
 
     function initializeAllPnj() {
       for(var i in vm.rencontre.relation) {
         var relation = vm.rencontre.relation[i];
-        relation.data.dead = false;
-        relation.data.diceSkillTest = "1d6",
-        relation.data.rolledDice = [];
         setMethodObject(relation);
         setPvMax(relation);
       }

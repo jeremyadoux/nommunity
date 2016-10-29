@@ -1,0 +1,55 @@
+<div class="card" ng-class="{'bgm-amber': vm.pnj.dead}">
+  <div class="card-header">
+    <h2>{{vm.pnj.name}} Niveau {{vm.pnj.level}}<small>Type : {{vm.pnj.experience}} EXP</small></h2>
+  </div>
+
+  <div class="card-body card-padding">
+    <div class="row">
+      <div class="col-sm-6">
+        <span class="f-500 c-black m-b-5">Initiative:</span> +{{vm.pnj.initiative}}
+        <span class="f-500 c-green m-b-5"> {{vm.pnj.initiativeResult}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <span class="f-500 m-b-5" ng-class="{'c-green': !vm.pnj.isPeril(), 'c-red': vm.pnj.isPeril()}">PV actuel {{vm.pnj.pvMod}}</span>
+        <i class="icon-pv zmdi zmdi-hc-fw c-green waves-effect" ng-class="{'zmdi-plus-circle': vm.pvmodeplus, 'zmdi-plus-circle-o': !vm.pvmodeplus}" ng-click="vm.changeModeToPlus()"></i>
+        <i class="icon-pv zmdi zmdi-hc-fw c-red waves-effect" ng-class="{'zmdi-minus-circle': vm.pvmodemoins, 'zmdi-minus-circle-outline': !vm.pvmodemoins}" ng-click="vm.changeModeToMoins()"></i>
+        <button class="btn btn-primary waves-effect" ng-click="vm.changePVBy(1)">1</button>
+        <button class="btn btn-primary waves-effect" ng-click="vm.changePVBy(2)">2</button>
+        <button class="btn btn-primary waves-effect" ng-click="vm.changePVBy(5)">5</button>
+        <button class="btn btn-primary waves-effect" ng-click="vm.changePVBy(10)">10</button>
+        <span class="f-500 m-b-5 c-orange" ng-show="vm.currentPvChanged != 0">{{vm.currentPvChanged}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <span class="f-500 c-black m-b-5">PV:</span> {{vm.pnj.pv}}
+      </div>
+      <div class="col-sm-6">
+        <span class="f-500 c-black m-b-5">VD:</span> {{vm.pnj.move}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3"><span class="f-500 c-black m-b-5">CA:</span> {{vm.pnj.ca}}</div>
+      <div class="col-sm-3"><span class="f-500 c-black m-b-5">Vigueur:</span> {{vm.pnj.vig}}</div>
+      <div class="col-sm-3"><span class="f-500 c-black m-b-5">Réflexes:</span> {{vm.pnj.reflex}}</div>
+      <div class="col-sm-3"><span class="f-500 c-black m-b-5">Volonté:</span> {{vm.pnj.volonte}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4"><span class="f-500 c-black m-b-5">Immunité:</span> {{vm.pnj.immunity}}</div>
+      <div class="col-sm-4"><span class="f-500 c-black m-b-5">Résistance:</span> {{vm.pnj.resistance}}</div>
+      <div class="col-sm-4"><span class="f-500 c-black m-b-5">Vulnérabilités:</span> {{vm.pnj.vulnerability}}</div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <span class="f-500 c-black m-b-5">Description:</span>{{vm.pnj.informations}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <span class="f-500 c-black m-b-5">Equipement:</span>{{vm.pnj.equipement}}
+      </div>
+    </div>
+  </div>
+</div>

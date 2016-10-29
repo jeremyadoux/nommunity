@@ -44,7 +44,7 @@
                 prepareDataRencontre.relation.push({
                   relationId: response[i].id,
                   data: response[i].data,
-                  jdrpnj: response[i].jdrpnj
+                  jdrpnj: new BaseMob(response[i].jdrpnj)
                 })
               }
             }
