@@ -5,9 +5,9 @@
     .module('app')
     .controller('rencontreDetailController', rencontreDetailController);
 
-  rencontreDetailController.$inject=['$stateParams', '$timeout','$interval', '$anchorScroll', '$uibModal', '$scope', 'RencontreService', 'growlService'];
+  rencontreDetailController.$inject=['$stateParams', 'RencontreService', 'PjService'];
 
-  function rencontreDetailController($stateParams, $timeout, $interval, $anchorScroll, $uibModal, $scope, RencontreService, growlService) {
+  function rencontreDetailController($stateParams, RencontreService, PjService) {
     var vm = this;
     var modalInstance;
 
@@ -44,10 +44,14 @@
     }
 
     function initializeAllPj() {
-      vm.playerList.push(new BasePlayer("Laure", sortInitArray));
-      vm.playerList.push(new BasePlayer("Elise", sortInitArray));
-      vm.playerList.push(new BasePlayer("Anton", sortInitArray));
-      vm.playerList.push(new BasePlayer("Mymy", sortInitArray));
+      PjService.load({})
+        .then(function(pjList) {
+          console.log(pjList);
+          for(var i in pjList) {
+            if(i != "$promise" && i != "$resolved")
+            vm.playerList.push(new BasePlayer(pjList[i], sortInitArray));
+          }
+        });
     }
 
     function sendAllInitiative() {
@@ -124,6 +128,21 @@
         vm.playerList[i].isCurrentPlayer = false;
       }
       vm.playerList[vm.fight.currentPlayerIndex].isCurrentPlayer = true;
+
+      PjService.resetAll().then(function(response) {
+        if(!vm.playerList[vm.fight.currentPlayerIndex].isPnj()) {
+          PjService.currentPlayer(vm.playerList[vm.fight.currentPlayerIndex].id);
+        }
+        if(typeof vm.playerList[vm.fight.currentPlayerIndex + 1] != "undefined") {
+          if(!vm.playerList[vm.fight.currentPlayerIndex + 1].isPnj()) {
+            PjService.nextPlayer(vm.playerList[vm.fight.currentPlayerIndex + 1].id);
+          }
+        } else {
+          if(!vm.playerList[0].isPnj()) {
+            PjService.nextPlayer(vm.playerList[0].id);
+          }
+        }
+      });
     }
 
     initController();

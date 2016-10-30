@@ -2,9 +2,8 @@
  * Created by jadoux on 28/10/2016.
  */
 class BasePlayer extends BasePlayable {
-  constructor(name, onChangeInitiativeCallback) {
-    super(name);
-
+  constructor(pjObj, onChangeInitiativeCallback) {
+    super(pjObj.id, pjObj.name);
     this.onChangeInitiativeCallback = onChangeInitiativeCallback || false;
   }
 
@@ -23,6 +22,10 @@ class BasePlayer extends BasePlayable {
     }
   }
 
+  set isCurrentPlayer(isCurrentPlayer) {
+    this._isCurrentPlayer = isCurrentPlayer;
+  }
+
   get initiativeResult() {
     return this._initiativeResult;
   }
@@ -31,4 +34,7 @@ class BasePlayer extends BasePlayable {
     return this._initiative;
   }
 
+  get isCurrentPlayer() {
+    return this._isCurrentPlayer;
+  }
 }

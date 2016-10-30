@@ -3,15 +3,20 @@
  */
 
 class BasePlayable {
-  constructor(name) {
+  constructor(id, name) {
+    this.id = id;
     this.name = name;
     this._initiativeResult = 0;
     this._initiative = 0;
     this._overInitiative = 0;
-    this.isCurrentPlayer = false;
+    this._isCurrentPlayer = false;
     this.effectOwner = [];
     this.effectTarget = [];
     this.onInitiativeChange = false;
+  }
+
+  set isCurrentPlayer(isCurrentPlayer) {
+    this._isCurrentPlayer = isCurrentPlayer;
   }
 
   set initiativeResult(initiativeResult) {
@@ -32,6 +37,10 @@ class BasePlayable {
     }
 
     return this._overInitiatives;
+  }
+
+  get isCurrentPlayer() {
+    return this._isCurrentPlayer;
   }
 
   get initiativeResult() {

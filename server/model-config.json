@@ -73,5 +73,9 @@
   "Jdrskill": {
     "dataSource": "mongo",
     "public": false
+  },
+  "Jdrpj": {
+    "dataSource": "mongo",
+    "public": true
   }
 }

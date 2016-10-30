@@ -4,7 +4,7 @@
 
 class BaseMob extends BasePlayable {
   constructor(pnjLoaded) {
-    super(pnjLoaded.name);
+    super(pnjLoaded.id, pnjLoaded.name);
 
     //Data in mod
     this.pvMod = pnjLoaded.pv;
