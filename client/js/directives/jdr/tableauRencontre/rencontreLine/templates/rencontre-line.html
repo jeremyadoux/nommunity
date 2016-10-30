@@ -1,0 +1,40 @@
+<div class="row" ng-class="{'bgm-amber': vm.playable.isCurrentPlayer}">
+  <div class="col-sm-8 m-b-20">
+    <div class="row">
+      <div class="col-sm-12 m-b-20">
+        <div ng-show="vm.edit" class="form-group">
+          <div class="fg-line">
+            <input type="text" placeholder="Player name" class="form-control input-sm" ng-model="vm.playable.name">
+          </div>
+        </div>
+        <span ng-hide="vm.edit">{{vm.playable.name}}
+          <span ng-if="vm.playable.isPnj()">
+            - <span class="f-500 m-b-5" ng-class="{'c-green': !vm.playable.isPeril(), 'c-red': vm.playable.isPeril()}">PV {{vm.playable.pvMod}}</span>
+            - CA {{vm.playable.ca}}
+            - Vig {{vm.playable.vig}}
+            - Ref {{vm.playable.reflex}}
+            - Vol {{vm.playable.volonte}}
+          </span>
+        </span>
+      </div>
+      <div class="col-sm-12 m-b-20" ng-if="vm.playable.isPnj()">
+        <life-management pnj="vm.playable"></life-management>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-2 m-b-20">
+    <span class="f-500 m-b-5">Initiative : </span>
+    <div ng-show="vm.edit" class="form-group">
+      <div class="fg-line">
+        <input type="text" placeholder="Player Initiative Result" class="form-control input-sm" ng-model="vm.form.initiativeResult">
+        <input type="text" placeholder="Player Initiative" class="form-control input-sm" ng-model="vm.form.initiative">
+      </div>
+    </div>
+    <span ng-hide="vm.edit">{{vm.playable.initiativeResult}}</span>
+  </div>
+  <div class="col-sm-2 m-b-20">
+    <button ng-if="vm.playable.isPnj()" class="btn btn-primary waves-effect" ng-click="vm.goToCardPnj(vm.playable)">Go To</button>
+    <button ng-show="!vm.playable.isPnj() && !vm.edit" class="btn btn-primary waves-effect" ng-click="vm.edit = true">Edit</button>
+    <button ng-show="vm.edit" class="btn btn-primary waves-effect" ng-click="vm.validChangeOnPlayerInitiative()">Valid</button>
+  </div>
+</div>

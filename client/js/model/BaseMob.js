@@ -37,11 +37,7 @@ class BaseMob extends BasePlayable {
   }
 
   sendInitiative() {
-    this.initiative = d20.roll("1d20+"+this.initiativeMod);
-  }
-
-  sendOverInitiative() {
-    this.overInitiative = d20.roll("1d20");
+    this.initiativeResult = d20.roll("1d20+"+this.initiative);
   }
 
   removePV(quantity) {
@@ -60,6 +56,6 @@ class BaseMob extends BasePlayable {
   }
 
   isPeril() {
-    return false;
+    return (Math.floor(this.pv/2) > this.pvMod);
   }
 }

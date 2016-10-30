@@ -2,11 +2,11 @@
   'use strict';
 
   angular.module('app')
-    .controller("cadrePnjController", cadrePnjController);
+    .controller("lifeManagementController", lifeManagementController);
 
-  cadrePnjController.$inject = ['$timeout'];
+  lifeManagementController.$inject = ['$timeout'];
 
-  function cadrePnjController($timeout) {
+  function lifeManagementController($timeout) {
     var vm = this;
 
     vm.pvmodeplus = false;

@@ -1,0 +1,7 @@
+<i class="icon-pv zmdi zmdi-hc-fw c-green waves-effect" ng-class="{'zmdi-plus-circle': vm.pvmodeplus, 'zmdi-plus-circle-o': !vm.pvmodeplus}" ng-click="vm.changeModeToPlus()"></i>
+<i class="icon-pv zmdi zmdi-hc-fw c-red waves-effect" ng-class="{'zmdi-minus-circle': vm.pvmodemoins, 'zmdi-minus-circle-outline': !vm.pvmodemoins}" ng-click="vm.changeModeToMoins()"></i>
+<button class="btn btn-primary waves-effect" ng-click="vm.changePVBy(1)">1</button>
+<button class="btn btn-primary waves-effect" ng-click="vm.changePVBy(2)">2</button>
+<button class="btn btn-primary waves-effect" ng-click="vm.changePVBy(5)">5</button>
+<button class="btn btn-primary waves-effect" ng-click="vm.changePVBy(10)">10</button>
+<span class="f-500 m-b-5 c-orange" ng-show="vm.currentPvChanged != 0">{{vm.currentPvChanged}}</span>

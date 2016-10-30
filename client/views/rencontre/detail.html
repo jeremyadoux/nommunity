@@ -58,61 +58,7 @@
         </div>
         <div class="col-sm-8">
           <div class="table-responsive">
-            <table class="table">
-              <thead>
-              <tr>
-                <th>Name</th>
-                <th>Init</th>
-                <th>Action</th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="player in vmRD.playerList" ng-show="!player.relation || !player.relation.data.dead" ng-class="{'bgm-amber': player.isCurrentPlayer}">
-                  <td>
-                    <div class="row">
-                      <div class="col-sm-12 m-b-20">
-                        <div ng-show="player.edit" class="form-group">
-                          <div class="fg-line">
-                            <input type="text" placeholder="Player name" class="form-control input-sm" ng-model="player.name">
-                          </div>
-                        </div>
-                        <span ng-hide="player.edit">{{player.name}}
-                          <span ng-show="player.relation">
-                            - <span class="f-500 m-b-5" ng-class="{'c-green': player.relation.data.pv > vmRD.getPeril(player.relation.jdrpnj.pv), 'c-red': player.relation.data.pv <= vmRD.getPeril(player.relation.jdrpnj.pv)}">PV {{player.relation.jdrpnj.pvMod}}</span>
-                            - CA {{player.relation.jdrpnj.ca}}
-                            - Vig {{player.relation.jdrpnj.vig}}
-                            - Ref {{player.relation.jdrpnj.reflex}}
-                            - Vol {{player.relation.jdrpnj.volonte}}
-                          </span>
-                        </span>
-                      </div>
-                      <div class="col-sm-12 m-b-20" ng-show="player.relation">
-                        <i class="icon-pv zmdi zmdi-hc-fw c-green waves-effect" ng-class="{'zmdi-plus-circle': player.relation.method.pvmodeplus, 'zmdi-plus-circle-o': !player.relation.method.pvmodeplus}" ng-click="vmRD.changeModeToPlus(player.relation)"></i>
-                        <i class="icon-pv zmdi zmdi-hc-fw c-red waves-effect" ng-class="{'zmdi-minus-circle': player.relation.method.pvmodemoins, 'zmdi-minus-circle-outline': !player.relation.method.pvmodemoins}" ng-click="vmRD.changeModeToMoins(player.relation)"></i>
-                        <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(1, player.relation)">1</button>
-                        <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(2, player.relation)">2</button>
-                        <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(5, player.relation)">5</button>
-                        <button class="btn btn-primary waves-effect" ng-click="vmRD.changePVBy(10, player.relation)">10</button>
-                        <span class="f-500 m-b-5 c-orange" ng-show="player.relation.currentPvChanged != 0">{{player.relation.currentPvChanged}}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div ng-show="player.edit" class="form-group">
-                      <div class="fg-line">
-                        <input type="text" placeholder="Player Initiative" class="form-control input-sm" ng-model="player.initiative">
-                      </div>
-                    </div>
-                    <span ng-hide="player.edit">{{player.initiative}}</span>
-                  </td>
-                  <td>
-                    <button ng-show="player.relation" class="btn btn-primary waves-effect" ng-click="vmRD.goToCardPnj(player.relation)">Go To</button>
-                    <button ng-show="!player.relation && !player.edit" class="btn btn-primary waves-effect" ng-click="player.edit = true">Edit</button>
-                    <button ng-show="player.edit" class="btn btn-primary waves-effect" ng-click="vmRD.validChangeOnPlayerInitiative(player)">Valid</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <rencontre-line ng-repeat="player in vmRD.playerList" playable="player"></rencontre-line>
           </div>
         </div>
       </div>
@@ -121,8 +67,8 @@
   <div class="card">
     <div class="card-body card-padding">
       <div class="row">
-        <div class="col-sm-6" ng-repeat="relation in vmRD.rencontre.relation">
-          <cadre-pnj pnj="relation.jdrpnj"></cadre-pnj>
+        <div class="col-sm-6" ng-repeat="pnj in vmRD.rencontre.pnj">
+          <cadre-pnj pnj="pnj"></cadre-pnj>
         </div>
       </div>
     </div>

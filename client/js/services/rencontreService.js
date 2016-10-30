@@ -33,19 +33,17 @@
           .$promise
           .then(function(response) {
             var prepareDataRencontre = response[0].rencontre;
-            prepareDataRencontre.relation = [];
+            prepareDataRencontre.pnj = [];
 
             for(var i in response) {
               if(typeof response[i].id !== 'undefined') {
-                if(typeof response[i].data == "undefined") {
-                  response[i].data = {};
-                }
+                prepareDataRencontre.pnj.push(new BaseMob(response[i].jdrpnj));
 
-                prepareDataRencontre.relation.push({
+                /*prepareDataRencontre.relation.push({
                   relationId: response[i].id,
                   data: response[i].data,
                   jdrpnj: new BaseMob(response[i].jdrpnj)
-                })
+                })*/
               }
             }
 
