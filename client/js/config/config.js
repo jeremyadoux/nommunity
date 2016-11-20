@@ -39,6 +39,37 @@
             }
           }
         })
+        .state('campaign', {
+          templateUrl: 'views/common.html'
+        })
+        .state('campaign.list', {
+          url: '/campaign',
+          data: {
+            requireLogin: true
+          },
+          templateUrl: 'views/campaign/list.html',
+          resolve: {
+            loadPlugin: function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  name: 'vendors',
+                  insertBefore: '#app-level',
+                  files: [
+                    'vendors/bower_components/autosize/dist/autosize.min.js',
+                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                  ]
+                },
+                {
+                  name: 'vendors',
+                  files: [
+                    'vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
+                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                  ]
+                }
+              ])
+            }
+          }
+        })
         .state('directory', {
           templateUrl: 'views/common.html'
         })
