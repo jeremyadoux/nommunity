@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <div class="row row-eq-height">
+    <div class="col-xs-1 vcenter">
+      <button ng-click="vmCC.closeModal()" class="btns btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+    </div>
+    <div class="col-xs-11 vcenter">
+      <h3>Créer une nouvelle campagne</h3>
+    </div>
+  </div>
+</div>
+
+<div class="modal-body">
+  <form name="createCampaignForm" role="form" novalidate>
+    <div class="col-sm-8">
+      <div class="form-group fg-line">
+        <label for="InputCampaignName">Nom de la nouvelle campagne</label>
+        <input id="InputCampaignName" type="text" name="InputCampaignName"  placeholder="Tapez ici le nom de votre nouvelle campagne" ng-model="vmCC.form.name" class="form-control" required="">
+        <div ng-show="createCampaignForm.$submitted">
+          <small class="help-block" ng-show="createCampaignForm.InputCampaignName.$error.required">Vous devez saisir un nom.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <button ng-click="vmCC.create(createCampaignForm)" class="btn btn-success btn-float waves-effect"><i class="zmdi zmdi-check"></i></button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+
+</div>

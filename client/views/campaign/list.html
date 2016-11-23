@@ -1,19 +1,76 @@
-<div class="container">
+<div class="container ng-scope" ng-controller="CampaignList as vmCL">
   <div class="card">
-    <div class="card-header">
-      <div class="row row-eq-height">
-        <div class="col-xs-1">
-          <button data-ui-sref="home" class="btn btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+    <div class="listview lv-bordered lv-lg">
+      <div class="lv-header-alt clearfix">
+        <button class="btn btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+        <h2 class="lvh-label hidden-xs">Campagnes</h2>
+
+        <div class="lvh-search" data-ng-if="vmCL.listviewSearchStat" data-ng-click="vmCL.listviewSearchStat">
+          <input ng-model="vmCL.filter" type="text" placeholder="Rechercher..." class="lvhs-input">
+
+          <i class="lvh-search-close" data-ng-click="vmCL.listviewSearchStat = false">&times;</i>
         </div>
-        <div class="col-xs-11 vcenter">
-          <h2>Campaign List</h2>
+
+        <ul class="lv-actions actions">
+          <li>
+            <a href="" data-ng-click="vmCL.listviewSearchStat = true">
+              <i class="zmdi zmdi-search"></i>
+            </a>
+          </li>
+          <li class="dropdown" uib-dropdown>
+            <a href="" uib-dropdown-toggle aria-expanded="true">
+              <i class="zmdi zmdi-sort"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>
+                <a href="">Last Modified</a>
+              </li>
+              <li>
+                <a href="">Last Edited</a>
+              </li>
+              <li>
+                <a href="">Name</a>
+              </li>
+              <li>
+                <a href="">Date</a>
+              </li>
+            </ul>
+          </li>
+          <li ng-controller="CampaignCreate as vmCC">
+            <button ng-click="vmCC.openModal()" class="btn btn-sm btn-success waves-effect">
+              <i class="zmdi zmdi-plus"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lv-body">
+        <div class="lv-item media" ng-repeat="campaign in vmCL.list">
+          <div class="media-body">
+            <div class="lv-title">{{campaign.name}}</div>
+
+            <div class="lv-actions actions dropdown" uib-dropdown="">
+              <a href="" uib-dropdown-toggle="" aria-expanded="false" class="dropdown-toggle" aria-haspopup="true">
+                <i class="zmdi zmdi-more-vert"></i>
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                  <a href="">Editer</a>
+                </li>
+                <li>
+                  <a href="">Effacer</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-body card-padding">
-Liste des campagnes ici
+    <div class="lv-pagination">
+      <uib-pagination total-items="vmCL.totalItems" ng-model="vmCL.currentPage" ng-change="vmCL.setPage()"></uib-pagination>
     </div>
   </div>
+
 </div>
