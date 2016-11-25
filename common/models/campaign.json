@@ -18,6 +18,11 @@
       "model": "Customer",
       "foreignKey": "authorId",
       "required": true
+    },
+    "rencontre": {
+      "type": "hasMany",
+      "model": "Rencontre",
+      "foreignKey": "campaignId"
     }
   },
   "acls": [],

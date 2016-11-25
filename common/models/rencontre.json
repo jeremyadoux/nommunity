@@ -18,8 +18,23 @@
       "model": "Jdrpnj",
       "foreignKey": "rencontreId",
       "through": "RencontrePnjRelation"
+    },
+    "author": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": "authorId",
+      "required": true
+    },
+    "campaign": {
+      "type": "belongsTo",
+      "model": "Campaign",
+      "foreignKey": "campaignId",
+      "required": true
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {},
+  "mixins": {
+    "TimeStamp": true
+  }
 }
