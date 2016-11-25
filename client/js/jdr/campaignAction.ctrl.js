@@ -107,11 +107,11 @@
         closeOnCancel: false
       }, function(isConfirm){
         if (isConfirm) {
-          campaign.$delete().then(function(content) {
-            console.log(content);
-            swal("Effacer!", "La campagne " + campaign.name + " a été effacée.", "success");
+          var name = campaign.name;
+          campaign.$delete().then(function() {
+            swal("Effacer!", "La campagne " + name + " a été effacée.", "success");
             if(typeof callbackDelete  === "function") {
-              callbackDelete(campaign);
+              callbackDelete();
             }
           });
         } else {

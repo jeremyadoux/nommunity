@@ -3,9 +3,9 @@
     <div class="listview lv-bordered lv-lg">
       <div class="lv-header-alt clearfix">
         <button class="btn btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
-        <h2 class="lvh-label hidden-xs" data-ng-click="vmCL.listviewSearchStat">Campagnes</h2>
+        <h2 class="lvh-label hidden-xs cursor-pointer" data-ng-click="vmCL.listviewSearchStat = true">Campagnes</h2>
 
-        <div class="lvh-search" data-ng-if="vmCL.listviewSearchStat" data-ng-click="vmCL.listviewSearchStat">
+        <div class="lvh-search" data-ng-if="vmCL.listviewSearchStat">
           <input ng-model="vmCL.filter" type="text" placeholder="Rechercher..." class="lvhs-input">
 
           <i class="lvh-search-close" data-ng-click="vmCL.listviewSearchStat = false">&times;</i>
@@ -44,7 +44,7 @@
 
       <div class="lv-body">
         <div class="table-responsive">
-          <div class="lv-item media" ng-repeat="campaign in vmCL.list">
+          <div class="lv-item media cursor-pointer" ng-repeat="campaign in vmCL.list">
             <div class="media-body">
               <div class="lv-title">{{campaign.name}}</div>
 
@@ -55,10 +55,10 @@
 
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li>
-                    <a ng-click="vmCC.openCreateModal(campaign)">Editer</a>
+                    <a class="waves-effect" ng-click="vmCC.openCreateModal(campaign)">Editer</a>
                   </li>
                   <li>
-                    <a ng-click="vmCC.deleteOpen(campaign, vmCL.reloadCampaignList)">Effacer</a>
+                    <a class="waves-effect" ng-click="vmCC.deleteOpen(campaign, vmCL.reloadCampaignList)">Effacer</a>
                   </li>
                 </ul>
               </div>
