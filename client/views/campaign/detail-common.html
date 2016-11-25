@@ -1,3 +1,42 @@
-<section id="main">
-  <section id="content" class="page-view" data-ui-view></section>
+<section id="main" ng-controller="CampaignDetail as vmCD">
+  <section id="content" class="page-view">
+
+    <div class="card">
+      <div class="card-header">
+        <button data-ui-sref="campaign.list" class="btn btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+        <h2 class="lvh-label">La campagne {{vmCD.campaign.name}}</h2>
+      </div>
+
+      <div class="card-body card-padding">
+        <div class="clearfix">
+          <ul class="tab-nav">
+            <li ui-sref-active="active">
+              <a ui-sref="campaign-detail.library({campaignId: vmCD.campaign.id})" class="ng-binding">Bibliothèque</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="campaign-detail.sequence({campaignId: vmCD.campaign.id})" class="ng-binding">Scénario</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="campaign-detail.map({campaignId: vmCD.campaign.id})" class="ng-binding">Carte du monde</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="campaign-detail.rencontre({campaignId: vmCD.campaign.id, rencontreId: '1'})" class="ng-binding">Rencontre 1</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ui-sref="campaign-detail.rencontre({campaignId: vmCD.campaign.id, rencontreId: '2'})" class="ng-binding">Rencontre 2</a>
+            </li>
+        </ul>
+          <div class="tab-content">
+            <div class="tab-pane active">
+              <span class="ng-binding" data-ui-view>
+
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
 </section>

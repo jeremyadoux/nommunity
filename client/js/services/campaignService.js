@@ -15,6 +15,7 @@
     var method = {
       create: create,
       load: load,
+      loadById: loadById,
       count: count
     };
 
@@ -27,6 +28,12 @@
 
       return Campaign.create(CampaignProtected)
         .$promise;
+    }
+
+    function loadById(id) {
+      return Campaign.findById(
+        {id : id}
+      ).$promise;
     }
 
     function load(filter) {
