@@ -1,9 +1,9 @@
 <div class="container ng-scope" ng-controller="CampaignList as vmCL">
-  <div class="card">
+  <div class="card" ng-controller="CampaignAction as vmCC">
     <div class="listview lv-bordered lv-lg">
       <div class="lv-header-alt clearfix">
         <button class="btn btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
-        <h2 class="lvh-label hidden-xs">Campagnes</h2>
+        <h2 class="lvh-label hidden-xs" data-ng-click="vmCL.listviewSearchStat">Campagnes</h2>
 
         <div class="lvh-search" data-ng-if="vmCL.listviewSearchStat" data-ng-click="vmCL.listviewSearchStat">
           <input ng-model="vmCL.filter" type="text" placeholder="Rechercher..." class="lvhs-input">
@@ -27,9 +27,6 @@
                 <a href="">Last Modified</a>
               </li>
               <li>
-                <a href="">Last Edited</a>
-              </li>
-              <li>
                 <a href="">Name</a>
               </li>
               <li>
@@ -37,8 +34,8 @@
               </li>
             </ul>
           </li>
-          <li ng-controller="CampaignCreate as vmCC">
-            <button ng-click="vmCC.openModal()" class="btn btn-sm btn-success waves-effect">
+          <li>
+            <button ng-click="vmCC.openCreateModal(null, vmCL.reloadCampaignList)" class="btn btn-sm btn-success waves-effect">
               <i class="zmdi zmdi-plus"></i>
             </button>
           </li>
@@ -46,29 +43,31 @@
       </div>
 
       <div class="lv-body">
-        <div class="lv-item media" ng-repeat="campaign in vmCL.list">
-          <div class="media-body">
-            <div class="lv-title">{{campaign.name}}</div>
+        <div class="table-responsive">
+          <div class="lv-item media" ng-repeat="campaign in vmCL.list">
+            <div class="media-body">
+              <div class="lv-title">{{campaign.name}}</div>
 
-            <div class="lv-actions actions dropdown" uib-dropdown="">
-              <a href="" uib-dropdown-toggle="" aria-expanded="false" class="dropdown-toggle" aria-haspopup="true">
-                <i class="zmdi zmdi-more-vert"></i>
-              </a>
+              <div class="lv-actions actions dropdown" uib-dropdown="">
+                <a href="" uib-dropdown-toggle="" aria-expanded="false" class="dropdown-toggle" aria-haspopup="true">
+                  <i class="zmdi zmdi-more-vert"></i>
+                </a>
 
-              <ul class="dropdown-menu dropdown-menu-right">
-                <li>
-                  <a href="">Editer</a>
-                </li>
-                <li>
-                  <a href="">Effacer</a>
-                </li>
-              </ul>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li>
+                    <a ng-click="vmCC.openCreateModal(campaign)">Editer</a>
+                  </li>
+                  <li>
+                    <a ng-click="vmCC.deleteOpen(campaign, vmCL.reloadCampaignList)">Effacer</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="lv-pagination">
+    <div class="lv-pagination" ng-show="vmCL.pager.totalPages > 1">
       <uib-pagination total-items="vmCL.totalItems" ng-model="vmCL.currentPage" ng-change="vmCL.setPage()"></uib-pagination>
     </div>
   </div>

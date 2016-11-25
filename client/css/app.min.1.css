@@ -11149,11 +11149,6 @@ body:not(.sw-toggled) #sidebar {
 .listview .lv-item {
   position: relative;
   display: block;
-  -webkit-transition: background-color;
-  -o-transition: background-color;
-  transition: background-color;
-  -webkit-transition-duration: 300ms;
-  transition-duration: 300ms;
 }
 
 .listview .lv-item .lv-small {

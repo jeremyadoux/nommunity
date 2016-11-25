@@ -11,6 +11,7 @@
     var vm = this;
 
     vm.setPage = setPage;
+    vm.reloadCampaignList = reloadCampaignList;
 
     vm.list = [];
     vm.pager = {};
@@ -19,11 +20,18 @@
     vm.filter = '';
     vm.listviewSearchStat = false;
 
+
+    var timeoutSearch = null;
+
     $scope.$watch('vmCL.filter', function (newValue, oldValue) {
-      $timeout(function() {
-        vm.currentPage = 1;
-        vm.setPage();
-      }, 300);
+      if(newValue != oldValue) {
+        //timeoutSearch.cancel();
+
+        timeoutSearch = $timeout(function () {
+          vm.currentPage = 1;
+          vm.setPage();
+        }, 300);
+      }
     });
 
     function setPage() {
@@ -51,6 +59,7 @@
           parameterFilter.order = 'name ASC';
           CampaignService.load(parameterFilter)
             .then(function(list) {
+              console.log(vm.pager);
               vm.list = list;
             });
         });
@@ -58,6 +67,10 @@
 
     function init() {
       vm.currentPage = 1;
+      vm.setPage();
+    }
+
+    function reloadCampaignList(campaign) {
       vm.setPage();
     }
 

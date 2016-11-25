@@ -4,7 +4,8 @@
       <button ng-click="vmCC.closeModal()" class="btns btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
     </div>
     <div class="col-xs-11 vcenter">
-      <h3>Créer une nouvelle campagne</h3>
+      <h3 ng-hide="vmCC.editedCampaign">Créer une nouvelle campagne</h3>
+      <h3 ng-show="vmCC.editedCampaign">Editer la campagne {{vmCC.editedCampaign.name}}</h3>
     </div>
   </div>
 </div>
@@ -13,8 +14,8 @@
   <form name="createCampaignForm" role="form" novalidate>
     <div class="col-sm-8">
       <div class="form-group fg-line">
-        <label for="InputCampaignName">Nom de la nouvelle campagne</label>
-        <input id="InputCampaignName" type="text" name="InputCampaignName"  placeholder="Tapez ici le nom de votre nouvelle campagne" ng-model="vmCC.form.name" class="form-control" required="">
+        <label for="InputCampaignName">Nom de la campagne</label>
+        <input id="InputCampaignName" type="text" name="InputCampaignName"  placeholder="Tapez ici le nom de votre campagne" ng-model="vmCC.form.name" class="form-control" required="">
         <div ng-show="createCampaignForm.$submitted">
           <small class="help-block" ng-show="createCampaignForm.InputCampaignName.$error.required">Vous devez saisir un nom.</small>
         </div>
