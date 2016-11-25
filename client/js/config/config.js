@@ -39,6 +39,121 @@
             }
           }
         })
+        .state('campaign-detail', {
+          templateUrl: 'views/campaign/detail-common.html'
+        })
+        .state('campaign-detail.library', {
+          url: '/campaign/detail/:campaignId/library',
+          data: {
+            requireLogin: true
+          },
+          templateUrl: 'views/campaign/library.html',
+          resolve: {
+            loadPlugin: function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  name: 'vendors',
+                  insertBefore: '#app-level',
+                  files: [
+                    'vendors/bower_components/autosize/dist/autosize.min.js',
+                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                  ]
+                },
+                {
+                  name: 'vendors',
+                  files: [
+                    'vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
+                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                  ]
+                }
+              ])
+            }
+          }
+        })
+        .state('campaign-detail.sequence', {
+          url: '/campaign/detail/:campaignId/sequence',
+          data: {
+            requireLogin: true
+          },
+          templateUrl: 'views/campaign/sequence.html',
+          resolve: {
+            loadPlugin: function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  name: 'vendors',
+                  insertBefore: '#app-level',
+                  files: [
+                    'vendors/bower_components/autosize/dist/autosize.min.js',
+                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                  ]
+                },
+                {
+                  name: 'vendors',
+                  files: [
+                    'vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
+                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                  ]
+                }
+              ])
+            }
+          }
+        })
+        .state('campaign-detail.map', {
+          url: '/campaign/detail/:campaignId/map',
+          data: {
+            requireLogin: true
+          },
+          templateUrl: 'views/campaign/map.html',
+          resolve: {
+            loadPlugin: function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  name: 'vendors',
+                  insertBefore: '#app-level',
+                  files: [
+                    'vendors/bower_components/autosize/dist/autosize.min.js',
+                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                  ]
+                },
+                {
+                  name: 'vendors',
+                  files: [
+                    'vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
+                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                  ]
+                }
+              ])
+            }
+          }
+        })
+        .state('campaign-detail.rencontre', {
+          url: '/campaign/detail/:campaignId/:rencontreId/rencontre',
+          data: {
+            requireLogin: true
+          },
+          templateUrl: 'views/campaign/recontre.html',
+          resolve: {
+            loadPlugin: function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  name: 'vendors',
+                  insertBefore: '#app-level',
+                  files: [
+                    'vendors/bower_components/autosize/dist/autosize.min.js',
+                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                  ]
+                },
+                {
+                  name: 'vendors',
+                  files: [
+                    'vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
+                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                  ]
+                }
+              ])
+            }
+          }
+        })
         .state('campaign', {
           templateUrl: 'views/common.html'
         })

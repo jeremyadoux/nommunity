@@ -2,7 +2,7 @@
   <div class="card" ng-controller="CampaignAction as vmCC">
     <div class="listview lv-bordered lv-lg">
       <div class="lv-header-alt clearfix">
-        <button class="btn btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+        <button data-ui-sref="home" class="btn btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
         <h2 class="lvh-label hidden-xs cursor-pointer" data-ng-click="vmCL.listviewSearchStat = true">Campagnes</h2>
 
         <div class="lvh-search" data-ng-if="vmCL.listviewSearchStat">
@@ -44,9 +44,9 @@
 
       <div class="lv-body">
         <div class="table-responsive">
-          <div class="lv-item media cursor-pointer" ng-repeat="campaign in vmCL.list">
-            <div class="media-body">
-              <div class="lv-title">{{campaign.name}}</div>
+          <div class="lv-item media lv-item-campaign" ng-repeat="campaign in vmCL.list">
+            <div class="media-body media-body">
+              <div class="lv-title-list waves-effect" data-ui-sref="campaign-detail.map({campaignId: campaign.id})">{{campaign.name}}</div>
 
               <div class="lv-actions actions dropdown" uib-dropdown="">
                 <a href="" uib-dropdown-toggle="" aria-expanded="false" class="dropdown-toggle" aria-haspopup="true">

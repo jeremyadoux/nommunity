@@ -33,3 +33,29 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+@media (min-width: 480px) {
+  .lv-title-list {
+    width: 100%;
+    padding: 17px 35px 17px 25px;
+  }
+}
+
+@media (max-width: 767px) {
+  .lv-title-list {
+    width: 100%;
+    padding: 17px 35px 17px 20px;
+  }
+}
+
+@media (min-width: 480px) {
+  .listview.lv-lg .lv-item-campaign {
+    padding: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .listview.lv-lg .lv-item-campaign {
+    padding: 0;
+  }
+}
