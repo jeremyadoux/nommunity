@@ -12,11 +12,29 @@
     },
     "level": {
       "type": "number",
-      "required": true
+      "required": false
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "picture": {
+      "type": "belongsTo",
+      "model": "Picture",
+      "foreignKey": "pictureId",
+      "required": false
+    },
+    "author": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": "authorId",
+      "required": false
+    },
+    "campaigns": {
+      "type": "hasMany",
+      "model": "Campaign",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

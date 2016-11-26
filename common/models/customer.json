@@ -26,6 +26,16 @@
       "type": "hasMany",
       "model": "Like",
       "foreignKey": "authorId"
+    },
+    "campaigns": {
+      "type": "hasMany",
+      "model": "Campaign",
+      "foreignKey": "authorId"
+    },
+    "playerjoueurs": {
+      "type": "hasMany",
+      "model": "PlayerJoueur",
+      "foreignKey": "authorId"
     }
   },
   "acls": [

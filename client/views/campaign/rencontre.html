@@ -3,7 +3,7 @@
     <button class="btn btn-float btn-success waves-effect btn-rigth-float">
       <i class="zmdi zmdi-plus"></i>
     </button>
-    <button class="btn btn-float btn-success waves-effect btn-left-float">
+    <button ng-show="vmRG.currentStep == 0" ng-click="vmRG.nextStep()" class="btn btn-float btn-success waves-effect btn-left-float">
       <i class="zmdi zmdi-mail-send"></i>
     </button>
     <canvas id="canvas"></canvas>

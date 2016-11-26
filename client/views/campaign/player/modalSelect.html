@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <div class="row row-eq-height">
+    <div class="col-xs-1 vcenter">
+      <button ng-click="vmRG.closeModalPlayerAdd()" class="btns btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+    </div>
+    <div class="col-xs-11 vcenter">
+      <h3>Sélectionner les joueurs</h3>
+    </div>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="listview lv-bordered lv-lg">
+    <div class="lv-body">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="table-responsive">
+            <div class="lv-item media" ng-repeat="pj in vmRG.vmCD.campaign.playerJoueurs">
+              <div class="checkbox pull-left">
+                <label>
+                  <input type="checkbox"
+                         checklist-model="vmRG.pjList" checklist-value="pj">
+                  <i class="input-helper"></i>
+                </label>
+              </div>
+              <div class="media-body">
+                <div class="lv-title">{{pj.name}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <span>
+            <ng-pluralize count="vmRG.pjList.length"
+                          when="{'0': 'Aucun joueur n\'a été sélectionné.',
+                     'one': 'Il y a 1 joueur sélectionné.',
+                     'other': 'Il y a {} joueurs sélectionnés.'}">
+            </ng-pluralize>
+          </span>
+          <button class="btn bgm-green waves-effect" ng-click="vmRG.nextStep()">Valider</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+</div>

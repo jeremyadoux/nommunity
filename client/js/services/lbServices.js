@@ -407,6 +407,60 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "PUT",
             },
 
+            // INTERNAL. Use Customer.campaigns.findById() instead.
+            "prototype$__findById__campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/campaigns/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.campaigns.destroyById() instead.
+            "prototype$__destroyById__campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/campaigns/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Customer.campaigns.updateById() instead.
+            "prototype$__updateById__campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/campaigns/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.findById() instead.
+            "prototype$__findById__playerjoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/playerjoueurs/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.destroyById() instead.
+            "prototype$__destroyById__playerjoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/playerjoueurs/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.updateById() instead.
+            "prototype$__updateById__playerjoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/playerjoueurs/:fk",
+              method: "PUT",
+            },
+
             /**
              * @ngdoc method
              * @name lbServices.Customer#prototype$__get__accessTokens
@@ -815,6 +869,56 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
              */
             "prototype$__count__likes": {
               url: urlBase + "/Customers/:id/likes/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.campaigns() instead.
+            "prototype$__get__campaigns": {
+              isArray: true,
+              url: urlBase + "/Customers/:id/campaigns",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.campaigns.create() instead.
+            "prototype$__create__campaigns": {
+              url: urlBase + "/Customers/:id/campaigns",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Customer.campaigns.destroyAll() instead.
+            "prototype$__delete__campaigns": {
+              url: urlBase + "/Customers/:id/campaigns",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Customer.campaigns.count() instead.
+            "prototype$__count__campaigns": {
+              url: urlBase + "/Customers/:id/campaigns/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs() instead.
+            "prototype$__get__playerjoueurs": {
+              isArray: true,
+              url: urlBase + "/Customers/:id/playerjoueurs",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.create() instead.
+            "prototype$__create__playerjoueurs": {
+              url: urlBase + "/Customers/:id/playerjoueurs",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.destroyAll() instead.
+            "prototype$__delete__playerjoueurs": {
+              url: urlBase + "/Customers/:id/playerjoueurs",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.count() instead.
+            "prototype$__count__playerjoueurs": {
+              url: urlBase + "/Customers/:id/playerjoueurs/count",
               method: "GET",
             },
 
@@ -1523,9 +1627,21 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
+            // INTERNAL. Use Rencontre.author() instead.
+            "::get::Rencontre::author": {
+              url: urlBase + "/Rencontres/:id/author",
+              method: "GET",
+            },
+
             // INTERNAL. Use Campaign.author() instead.
             "::get::Campaign::author": {
               url: urlBase + "/Campaigns/:id/author",
+              method: "GET",
+            },
+
+            // INTERNAL. Use PlayerJoueur.author() instead.
+            "::get::PlayerJoueur::author": {
+              url: urlBase + "/PlayerJoueurs/:id/author",
               method: "GET",
             },
 
@@ -1846,6 +1962,608 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         */
         R.modelName = "Customer";
 
+    /**
+     * @ngdoc object
+     * @name lbServices.Customer.campaigns
+     * @header lbServices.Customer.campaigns
+     * @object
+     * @description
+     *
+     * The object `Customer.campaigns` groups methods
+     * manipulating `Campaign` instances related to `Customer`.
+     *
+     * Call {@link lbServices.Customer#campaigns Customer.campaigns()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer#campaigns
+             * @methodOf lbServices.Customer
+             *
+             * @description
+             *
+             * Queries campaigns of Customer.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::get::Customer::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.campaigns#count
+             * @methodOf lbServices.Customer.campaigns
+             *
+             * @description
+             *
+             * Counts campaigns of Customer.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.campaigns.count = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::count::Customer::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.campaigns#create
+             * @methodOf lbServices.Customer.campaigns
+             *
+             * @description
+             *
+             * Creates a new instance in campaigns of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns.create = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::create::Customer::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.campaigns#createMany
+             * @methodOf lbServices.Customer.campaigns
+             *
+             * @description
+             *
+             * Creates a new instance in campaigns of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns.createMany = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::createMany::Customer::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.campaigns#destroyAll
+             * @methodOf lbServices.Customer.campaigns
+             *
+             * @description
+             *
+             * Deletes all campaigns of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.campaigns.destroyAll = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::delete::Customer::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.campaigns#destroyById
+             * @methodOf lbServices.Customer.campaigns
+             *
+             * @description
+             *
+             * Delete a related item by id for campaigns.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for campaigns
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.campaigns.destroyById = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::destroyById::Customer::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.campaigns#findById
+             * @methodOf lbServices.Customer.campaigns
+             *
+             * @description
+             *
+             * Find a related item by id for campaigns.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for campaigns
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns.findById = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::findById::Customer::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.campaigns#updateById
+             * @methodOf lbServices.Customer.campaigns
+             *
+             * @description
+             *
+             * Update a related item by id for campaigns.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for campaigns
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns.updateById = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::updateById::Customer::campaigns"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Customer.playerjoueurs
+     * @header lbServices.Customer.playerjoueurs
+     * @object
+     * @description
+     *
+     * The object `Customer.playerjoueurs` groups methods
+     * manipulating `PlayerJoueur` instances related to `Customer`.
+     *
+     * Call {@link lbServices.Customer#playerjoueurs Customer.playerjoueurs()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer#playerjoueurs
+             * @methodOf lbServices.Customer
+             *
+             * @description
+             *
+             * Queries playerjoueurs of Customer.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerjoueurs = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::get::Customer::playerjoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.playerjoueurs#count
+             * @methodOf lbServices.Customer.playerjoueurs
+             *
+             * @description
+             *
+             * Counts playerjoueurs of Customer.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.playerjoueurs.count = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::count::Customer::playerjoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.playerjoueurs#create
+             * @methodOf lbServices.Customer.playerjoueurs
+             *
+             * @description
+             *
+             * Creates a new instance in playerjoueurs of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerjoueurs.create = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::create::Customer::playerjoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.playerjoueurs#createMany
+             * @methodOf lbServices.Customer.playerjoueurs
+             *
+             * @description
+             *
+             * Creates a new instance in playerjoueurs of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerjoueurs.createMany = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::createMany::Customer::playerjoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.playerjoueurs#destroyAll
+             * @methodOf lbServices.Customer.playerjoueurs
+             *
+             * @description
+             *
+             * Deletes all playerjoueurs of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.playerjoueurs.destroyAll = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::delete::Customer::playerjoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.playerjoueurs#destroyById
+             * @methodOf lbServices.Customer.playerjoueurs
+             *
+             * @description
+             *
+             * Delete a related item by id for playerjoueurs.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for playerjoueurs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.playerjoueurs.destroyById = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::destroyById::Customer::playerjoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.playerjoueurs#findById
+             * @methodOf lbServices.Customer.playerjoueurs
+             *
+             * @description
+             *
+             * Find a related item by id for playerjoueurs.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for playerjoueurs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerjoueurs.findById = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::findById::Customer::playerjoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Customer.playerjoueurs#updateById
+             * @methodOf lbServices.Customer.playerjoueurs
+             *
+             * @description
+             *
+             * Update a related item by id for playerjoueurs.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - User id
+             *
+             *  - `fk` – `{*}` - Foreign key for playerjoueurs
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerjoueurs.updateById = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::updateById::Customer::playerjoueurs"];
+          return action.apply(R, arguments);
+        };
 
 
         return R;
@@ -4587,6 +5305,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           { 'id': '@id' },
           {
 
+            // INTERNAL. Use Rencontre.author() instead.
+            "prototype$__get__author": {
+              url: urlBase + "/Rencontres/:id/author",
+              method: "GET",
+            },
+
             // INTERNAL. Use Rencontre.jdrpnjs.findById() instead.
             "prototype$__findById__jdrpnjs": {
               params: {
@@ -4639,6 +5363,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               },
               url: urlBase + "/Rencontres/:id/jdrpnjs/rel/:fk",
               method: "HEAD",
+            },
+
+            // INTERNAL. Use Rencontre.campaign() instead.
+            "prototype$__get__campaign": {
+              url: urlBase + "/Rencontres/:id/campaign",
+              method: "GET",
             },
 
             // INTERNAL. Use Rencontre.jdrpnjs() instead.
@@ -5284,6 +6014,65 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               url: urlBase + "/RencontrePnjRelations/:id/rencontre",
               method: "GET",
             },
+
+            // INTERNAL. Use Campaign.rencontre.findById() instead.
+            "::findById::Campaign::rencontre": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/rencontre/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.destroyById() instead.
+            "::destroyById::Campaign::rencontre": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/rencontre/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.updateById() instead.
+            "::updateById::Campaign::rencontre": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/rencontre/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Campaign.rencontre() instead.
+            "::get::Campaign::rencontre": {
+              isArray: true,
+              url: urlBase + "/Campaigns/:id/rencontre",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.create() instead.
+            "::create::Campaign::rencontre": {
+              url: urlBase + "/Campaigns/:id/rencontre",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.createMany() instead.
+            "::createMany::Campaign::rencontre": {
+              isArray: true,
+              url: urlBase + "/Campaigns/:id/rencontre",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.destroyAll() instead.
+            "::delete::Campaign::rencontre": {
+              url: urlBase + "/Campaigns/:id/rencontre",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.count() instead.
+            "::count::Campaign::rencontre": {
+              url: urlBase + "/Campaigns/:id/rencontre/count",
+              method: "GET",
+            },
           }
         );
 
@@ -5517,6 +6306,42 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         */
         R.modelName = "Rencontre";
 
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Rencontre#author
+             * @methodOf lbServices.Rencontre
+             *
+             * @description
+             *
+             * Fetches belongsTo relation author.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Customer` object.)
+             * </em>
+             */
+        R.author = function() {
+          var TargetResource = $injector.get("Customer");
+          var action = TargetResource["::get::Rencontre::author"];
+          return action.apply(R, arguments);
+        };
     /**
      * @ngdoc object
      * @name lbServices.Rencontre.jdrpnjs
@@ -5925,6 +6750,42 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
         R.jdrpnjs.updateById = function() {
           var TargetResource = $injector.get("Jdrpnj");
           var action = TargetResource["::updateById::Rencontre::jdrpnjs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Rencontre#campaign
+             * @methodOf lbServices.Rencontre
+             *
+             * @description
+             *
+             * Fetches belongsTo relation campaign.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaign = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::get::Rencontre::campaign"];
           return action.apply(R, arguments);
         };
 
@@ -7734,6 +8595,110 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               method: "GET",
             },
 
+            // INTERNAL. Use Campaign.rencontre.findById() instead.
+            "prototype$__findById__rencontre": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/rencontre/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.destroyById() instead.
+            "prototype$__destroyById__rencontre": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/rencontre/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.updateById() instead.
+            "prototype$__updateById__rencontre": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/rencontre/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.findById() instead.
+            "prototype$__findById__playerJoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/playerJoueurs/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.destroyById() instead.
+            "prototype$__destroyById__playerJoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/playerJoueurs/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.updateById() instead.
+            "prototype$__updateById__playerJoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/playerJoueurs/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Campaign.rencontre() instead.
+            "prototype$__get__rencontre": {
+              isArray: true,
+              url: urlBase + "/Campaigns/:id/rencontre",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.create() instead.
+            "prototype$__create__rencontre": {
+              url: urlBase + "/Campaigns/:id/rencontre",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.destroyAll() instead.
+            "prototype$__delete__rencontre": {
+              url: urlBase + "/Campaigns/:id/rencontre",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Campaign.rencontre.count() instead.
+            "prototype$__count__rencontre": {
+              url: urlBase + "/Campaigns/:id/rencontre/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs() instead.
+            "prototype$__get__playerJoueurs": {
+              isArray: true,
+              url: urlBase + "/Campaigns/:id/playerJoueurs",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.create() instead.
+            "prototype$__create__playerJoueurs": {
+              url: urlBase + "/Campaigns/:id/playerJoueurs",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.destroyAll() instead.
+            "prototype$__delete__playerJoueurs": {
+              url: urlBase + "/Campaigns/:id/playerJoueurs",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.count() instead.
+            "prototype$__count__playerJoueurs": {
+              url: urlBase + "/Campaigns/:id/playerJoueurs/count",
+              method: "GET",
+            },
+
             /**
              * @ngdoc method
              * @name lbServices.Campaign#create
@@ -8260,6 +9225,130 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
               url: urlBase + "/Campaigns/change-stream",
               method: "POST",
             },
+
+            // INTERNAL. Use Customer.campaigns.findById() instead.
+            "::findById::Customer::campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/campaigns/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.campaigns.destroyById() instead.
+            "::destroyById::Customer::campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/campaigns/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Customer.campaigns.updateById() instead.
+            "::updateById::Customer::campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/campaigns/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Customer.campaigns() instead.
+            "::get::Customer::campaigns": {
+              isArray: true,
+              url: urlBase + "/Customers/:id/campaigns",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.campaigns.create() instead.
+            "::create::Customer::campaigns": {
+              url: urlBase + "/Customers/:id/campaigns",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Customer.campaigns.createMany() instead.
+            "::createMany::Customer::campaigns": {
+              isArray: true,
+              url: urlBase + "/Customers/:id/campaigns",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Customer.campaigns.destroyAll() instead.
+            "::delete::Customer::campaigns": {
+              url: urlBase + "/Customers/:id/campaigns",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Customer.campaigns.count() instead.
+            "::count::Customer::campaigns": {
+              url: urlBase + "/Customers/:id/campaigns/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Rencontre.campaign() instead.
+            "::get::Rencontre::campaign": {
+              url: urlBase + "/Rencontres/:id/campaign",
+              method: "GET",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.findById() instead.
+            "::findById::PlayerJoueur::campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/PlayerJoueurs/:id/campaigns/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.destroyById() instead.
+            "::destroyById::PlayerJoueur::campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/PlayerJoueurs/:id/campaigns/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.updateById() instead.
+            "::updateById::PlayerJoueur::campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/PlayerJoueurs/:id/campaigns/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns() instead.
+            "::get::PlayerJoueur::campaigns": {
+              isArray: true,
+              url: urlBase + "/PlayerJoueurs/:id/campaigns",
+              method: "GET",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.create() instead.
+            "::create::PlayerJoueur::campaigns": {
+              url: urlBase + "/PlayerJoueurs/:id/campaigns",
+              method: "POST",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.createMany() instead.
+            "::createMany::PlayerJoueur::campaigns": {
+              isArray: true,
+              url: urlBase + "/PlayerJoueurs/:id/campaigns",
+              method: "POST",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.destroyAll() instead.
+            "::delete::PlayerJoueur::campaigns": {
+              url: urlBase + "/PlayerJoueurs/:id/campaigns",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.count() instead.
+            "::count::PlayerJoueur::campaigns": {
+              url: urlBase + "/PlayerJoueurs/:id/campaigns/count",
+              method: "GET",
+            },
           }
         );
 
@@ -8529,6 +9618,3169 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' &&
           var action = TargetResource["::get::Campaign::author"];
           return action.apply(R, arguments);
         };
+    /**
+     * @ngdoc object
+     * @name lbServices.Campaign.rencontre
+     * @header lbServices.Campaign.rencontre
+     * @object
+     * @description
+     *
+     * The object `Campaign.rencontre` groups methods
+     * manipulating `Rencontre` instances related to `Campaign`.
+     *
+     * Call {@link lbServices.Campaign#rencontre Campaign.rencontre()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign#rencontre
+             * @methodOf lbServices.Campaign
+             *
+             * @description
+             *
+             * Queries rencontre of Campaign.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Rencontre` object.)
+             * </em>
+             */
+        R.rencontre = function() {
+          var TargetResource = $injector.get("Rencontre");
+          var action = TargetResource["::get::Campaign::rencontre"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.rencontre#count
+             * @methodOf lbServices.Campaign.rencontre
+             *
+             * @description
+             *
+             * Counts rencontre of Campaign.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.rencontre.count = function() {
+          var TargetResource = $injector.get("Rencontre");
+          var action = TargetResource["::count::Campaign::rencontre"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.rencontre#create
+             * @methodOf lbServices.Campaign.rencontre
+             *
+             * @description
+             *
+             * Creates a new instance in rencontre of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Rencontre` object.)
+             * </em>
+             */
+        R.rencontre.create = function() {
+          var TargetResource = $injector.get("Rencontre");
+          var action = TargetResource["::create::Campaign::rencontre"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.rencontre#createMany
+             * @methodOf lbServices.Campaign.rencontre
+             *
+             * @description
+             *
+             * Creates a new instance in rencontre of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Rencontre` object.)
+             * </em>
+             */
+        R.rencontre.createMany = function() {
+          var TargetResource = $injector.get("Rencontre");
+          var action = TargetResource["::createMany::Campaign::rencontre"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.rencontre#destroyAll
+             * @methodOf lbServices.Campaign.rencontre
+             *
+             * @description
+             *
+             * Deletes all rencontre of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.rencontre.destroyAll = function() {
+          var TargetResource = $injector.get("Rencontre");
+          var action = TargetResource["::delete::Campaign::rencontre"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.rencontre#destroyById
+             * @methodOf lbServices.Campaign.rencontre
+             *
+             * @description
+             *
+             * Delete a related item by id for rencontre.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for rencontre
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.rencontre.destroyById = function() {
+          var TargetResource = $injector.get("Rencontre");
+          var action = TargetResource["::destroyById::Campaign::rencontre"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.rencontre#findById
+             * @methodOf lbServices.Campaign.rencontre
+             *
+             * @description
+             *
+             * Find a related item by id for rencontre.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for rencontre
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Rencontre` object.)
+             * </em>
+             */
+        R.rencontre.findById = function() {
+          var TargetResource = $injector.get("Rencontre");
+          var action = TargetResource["::findById::Campaign::rencontre"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.rencontre#updateById
+             * @methodOf lbServices.Campaign.rencontre
+             *
+             * @description
+             *
+             * Update a related item by id for rencontre.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for rencontre
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Rencontre` object.)
+             * </em>
+             */
+        R.rencontre.updateById = function() {
+          var TargetResource = $injector.get("Rencontre");
+          var action = TargetResource["::updateById::Campaign::rencontre"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.Campaign.playerJoueurs
+     * @header lbServices.Campaign.playerJoueurs
+     * @object
+     * @description
+     *
+     * The object `Campaign.playerJoueurs` groups methods
+     * manipulating `PlayerJoueur` instances related to `Campaign`.
+     *
+     * Call {@link lbServices.Campaign#playerJoueurs Campaign.playerJoueurs()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign#playerJoueurs
+             * @methodOf lbServices.Campaign
+             *
+             * @description
+             *
+             * Queries playerJoueurs of Campaign.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerJoueurs = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::get::Campaign::playerJoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.playerJoueurs#count
+             * @methodOf lbServices.Campaign.playerJoueurs
+             *
+             * @description
+             *
+             * Counts playerJoueurs of Campaign.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.playerJoueurs.count = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::count::Campaign::playerJoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.playerJoueurs#create
+             * @methodOf lbServices.Campaign.playerJoueurs
+             *
+             * @description
+             *
+             * Creates a new instance in playerJoueurs of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerJoueurs.create = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::create::Campaign::playerJoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.playerJoueurs#createMany
+             * @methodOf lbServices.Campaign.playerJoueurs
+             *
+             * @description
+             *
+             * Creates a new instance in playerJoueurs of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerJoueurs.createMany = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::createMany::Campaign::playerJoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.playerJoueurs#destroyAll
+             * @methodOf lbServices.Campaign.playerJoueurs
+             *
+             * @description
+             *
+             * Deletes all playerJoueurs of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.playerJoueurs.destroyAll = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::delete::Campaign::playerJoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.playerJoueurs#destroyById
+             * @methodOf lbServices.Campaign.playerJoueurs
+             *
+             * @description
+             *
+             * Delete a related item by id for playerJoueurs.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for playerJoueurs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.playerJoueurs.destroyById = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::destroyById::Campaign::playerJoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.playerJoueurs#findById
+             * @methodOf lbServices.Campaign.playerJoueurs
+             *
+             * @description
+             *
+             * Find a related item by id for playerJoueurs.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for playerJoueurs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerJoueurs.findById = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::findById::Campaign::playerJoueurs"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Campaign.playerJoueurs#updateById
+             * @methodOf lbServices.Campaign.playerJoueurs
+             *
+             * @description
+             *
+             * Update a related item by id for playerJoueurs.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for playerJoueurs
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R.playerJoueurs.updateById = function() {
+          var TargetResource = $injector.get("PlayerJoueur");
+          var action = TargetResource["::updateById::Campaign::playerJoueurs"];
+          return action.apply(R, arguments);
+        };
+
+
+        return R;
+      }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.PlayerJoueur
+ * @header lbServices.PlayerJoueur
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `PlayerJoueur` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+  module.factory(
+    "PlayerJoueur",
+    [
+      'LoopBackResource', 'LoopBackAuth', '$injector', '$q',
+      function(LoopBackResource, LoopBackAuth, $injector, $q) {
+        var R = LoopBackResource(
+        urlBase + "/PlayerJoueurs/:id",
+          { 'id': '@id' },
+          {
+
+            // INTERNAL. Use PlayerJoueur.author() instead.
+            "prototype$__get__author": {
+              url: urlBase + "/PlayerJoueurs/:id/author",
+              method: "GET",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.findById() instead.
+            "prototype$__findById__campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/PlayerJoueurs/:id/campaigns/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.destroyById() instead.
+            "prototype$__destroyById__campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/PlayerJoueurs/:id/campaigns/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.updateById() instead.
+            "prototype$__updateById__campaigns": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/PlayerJoueurs/:id/campaigns/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use PlayerJoueur.picture() instead.
+            "prototype$__get__picture": {
+              url: urlBase + "/PlayerJoueurs/:id/picture",
+              method: "GET",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns() instead.
+            "prototype$__get__campaigns": {
+              isArray: true,
+              url: urlBase + "/PlayerJoueurs/:id/campaigns",
+              method: "GET",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.create() instead.
+            "prototype$__create__campaigns": {
+              url: urlBase + "/PlayerJoueurs/:id/campaigns",
+              method: "POST",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.destroyAll() instead.
+            "prototype$__delete__campaigns": {
+              url: urlBase + "/PlayerJoueurs/:id/campaigns",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use PlayerJoueur.campaigns.count() instead.
+            "prototype$__count__campaigns": {
+              url: urlBase + "/PlayerJoueurs/:id/campaigns/count",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#create
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Create a new instance of the model and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "create": {
+              url: urlBase + "/PlayerJoueurs",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#createMany
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Create a new instance of the model and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "createMany": {
+              isArray: true,
+              url: urlBase + "/PlayerJoueurs",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#patchOrCreate
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "patchOrCreate": {
+              url: urlBase + "/PlayerJoueurs",
+              method: "PATCH",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#replaceOrCreate
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Replace an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "replaceOrCreate": {
+              url: urlBase + "/PlayerJoueurs/replaceOrCreate",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#upsertWithWhere
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Update an existing model instance or insert a new one into the data source based on the where criteria.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "upsertWithWhere": {
+              url: urlBase + "/PlayerJoueurs/upsertWithWhere",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#exists
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Check whether a model instance exists in the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `exists` – `{boolean=}` -
+             */
+            "exists": {
+              url: urlBase + "/PlayerJoueurs/:id/exists",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#findById
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Find a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             *  - `filter` – `{object=}` - Filter defining fields and include
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "findById": {
+              url: urlBase + "/PlayerJoueurs/:id",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#replaceById
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Replace attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "replaceById": {
+              url: urlBase + "/PlayerJoueurs/:id/replace",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#find
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Find all instances of the model matched by filter from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "find": {
+              isArray: true,
+              url: urlBase + "/PlayerJoueurs",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#findOne
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Find first instance of the model matched by filter from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "findOne": {
+              url: urlBase + "/PlayerJoueurs/findOne",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#updateAll
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Update instances of the model matched by {{where}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * The number of instances updated
+             */
+            "updateAll": {
+              url: urlBase + "/PlayerJoueurs/update",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#deleteById
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "deleteById": {
+              url: urlBase + "/PlayerJoueurs/:id",
+              method: "DELETE",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#count
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Count instances of the model matched by where from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+            "count": {
+              url: urlBase + "/PlayerJoueurs/count",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#prototype$patchAttributes
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Patch attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `data` – `{object=}` - An object of model property name/value pairs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+            "prototype$patchAttributes": {
+              url: urlBase + "/PlayerJoueurs/:id",
+              method: "PATCH",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#createChangeStream
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Create a change stream.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `options` – `{object=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `changes` – `{ReadableStream=}` -
+             */
+            "createChangeStream": {
+              url: urlBase + "/PlayerJoueurs/change-stream",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.findById() instead.
+            "::findById::Customer::playerjoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/playerjoueurs/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.destroyById() instead.
+            "::destroyById::Customer::playerjoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/playerjoueurs/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.updateById() instead.
+            "::updateById::Customer::playerjoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Customers/:id/playerjoueurs/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs() instead.
+            "::get::Customer::playerjoueurs": {
+              isArray: true,
+              url: urlBase + "/Customers/:id/playerjoueurs",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.create() instead.
+            "::create::Customer::playerjoueurs": {
+              url: urlBase + "/Customers/:id/playerjoueurs",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.createMany() instead.
+            "::createMany::Customer::playerjoueurs": {
+              isArray: true,
+              url: urlBase + "/Customers/:id/playerjoueurs",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.destroyAll() instead.
+            "::delete::Customer::playerjoueurs": {
+              url: urlBase + "/Customers/:id/playerjoueurs",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Customer.playerjoueurs.count() instead.
+            "::count::Customer::playerjoueurs": {
+              url: urlBase + "/Customers/:id/playerjoueurs/count",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.findById() instead.
+            "::findById::Campaign::playerJoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/playerJoueurs/:fk",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.destroyById() instead.
+            "::destroyById::Campaign::playerJoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/playerJoueurs/:fk",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.updateById() instead.
+            "::updateById::Campaign::playerJoueurs": {
+              params: {
+                'fk': '@fk',
+              },
+              url: urlBase + "/Campaigns/:id/playerJoueurs/:fk",
+              method: "PUT",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs() instead.
+            "::get::Campaign::playerJoueurs": {
+              isArray: true,
+              url: urlBase + "/Campaigns/:id/playerJoueurs",
+              method: "GET",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.create() instead.
+            "::create::Campaign::playerJoueurs": {
+              url: urlBase + "/Campaigns/:id/playerJoueurs",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.createMany() instead.
+            "::createMany::Campaign::playerJoueurs": {
+              isArray: true,
+              url: urlBase + "/Campaigns/:id/playerJoueurs",
+              method: "POST",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.destroyAll() instead.
+            "::delete::Campaign::playerJoueurs": {
+              url: urlBase + "/Campaigns/:id/playerJoueurs",
+              method: "DELETE",
+            },
+
+            // INTERNAL. Use Campaign.playerJoueurs.count() instead.
+            "::count::Campaign::playerJoueurs": {
+              url: urlBase + "/Campaigns/:id/playerJoueurs/count",
+              method: "GET",
+            },
+          }
+        );
+
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#upsert
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R["upsert"] = R["patchOrCreate"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#updateOrCreate
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R["updateOrCreate"] = R["patchOrCreate"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#patchOrCreateWithWhere
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Update an existing model instance or insert a new one into the data source based on the where criteria.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R["patchOrCreateWithWhere"] = R["upsertWithWhere"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#update
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Update instances of the model matched by {{where}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * The number of instances updated
+             */
+        R["update"] = R["updateAll"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#destroyById
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R["destroyById"] = R["deleteById"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#removeById
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R["removeById"] = R["deleteById"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#updateAttributes
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Patch attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `data` – `{object=}` - An object of model property name/value pairs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `PlayerJoueur` object.)
+             * </em>
+             */
+        R["updateAttributes"] = R["prototype$patchAttributes"];
+
+
+        /**
+        * @ngdoc property
+        * @name lbServices.PlayerJoueur#modelName
+        * @propertyOf lbServices.PlayerJoueur
+        * @description
+        * The name of the model represented by this $resource,
+        * i.e. `PlayerJoueur`.
+        */
+        R.modelName = "PlayerJoueur";
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#author
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Fetches belongsTo relation author.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Customer` object.)
+             * </em>
+             */
+        R.author = function() {
+          var TargetResource = $injector.get("Customer");
+          var action = TargetResource["::get::PlayerJoueur::author"];
+          return action.apply(R, arguments);
+        };
+    /**
+     * @ngdoc object
+     * @name lbServices.PlayerJoueur.campaigns
+     * @header lbServices.PlayerJoueur.campaigns
+     * @object
+     * @description
+     *
+     * The object `PlayerJoueur.campaigns` groups methods
+     * manipulating `Campaign` instances related to `PlayerJoueur`.
+     *
+     * Call {@link lbServices.PlayerJoueur#campaigns PlayerJoueur.campaigns()}
+     * to query all related instances.
+     */
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#campaigns
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Queries campaigns of PlayerJoueur.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `filter` – `{object=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::get::PlayerJoueur::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur.campaigns#count
+             * @methodOf lbServices.PlayerJoueur.campaigns
+             *
+             * @description
+             *
+             * Counts campaigns of PlayerJoueur.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+        R.campaigns.count = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::count::PlayerJoueur::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur.campaigns#create
+             * @methodOf lbServices.PlayerJoueur.campaigns
+             *
+             * @description
+             *
+             * Creates a new instance in campaigns of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns.create = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::create::PlayerJoueur::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur.campaigns#createMany
+             * @methodOf lbServices.PlayerJoueur.campaigns
+             *
+             * @description
+             *
+             * Creates a new instance in campaigns of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns.createMany = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::createMany::PlayerJoueur::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur.campaigns#destroyAll
+             * @methodOf lbServices.PlayerJoueur.campaigns
+             *
+             * @description
+             *
+             * Deletes all campaigns of this model.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.campaigns.destroyAll = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::delete::PlayerJoueur::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur.campaigns#destroyById
+             * @methodOf lbServices.PlayerJoueur.campaigns
+             *
+             * @description
+             *
+             * Delete a related item by id for campaigns.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for campaigns
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+        R.campaigns.destroyById = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::destroyById::PlayerJoueur::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur.campaigns#findById
+             * @methodOf lbServices.PlayerJoueur.campaigns
+             *
+             * @description
+             *
+             * Find a related item by id for campaigns.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for campaigns
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns.findById = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::findById::PlayerJoueur::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur.campaigns#updateById
+             * @methodOf lbServices.PlayerJoueur.campaigns
+             *
+             * @description
+             *
+             * Update a related item by id for campaigns.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `fk` – `{*}` - Foreign key for campaigns
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Campaign` object.)
+             * </em>
+             */
+        R.campaigns.updateById = function() {
+          var TargetResource = $injector.get("Campaign");
+          var action = TargetResource["::updateById::PlayerJoueur::campaigns"];
+          return action.apply(R, arguments);
+        };
+
+            /**
+             * @ngdoc method
+             * @name lbServices.PlayerJoueur#picture
+             * @methodOf lbServices.PlayerJoueur
+             *
+             * @description
+             *
+             * Fetches belongsTo relation picture.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `refresh` – `{boolean=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+        R.picture = function() {
+          var TargetResource = $injector.get("Picture");
+          var action = TargetResource["::get::PlayerJoueur::picture"];
+          return action.apply(R, arguments);
+        };
+
+
+        return R;
+      }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.Container
+ * @header lbServices.Container
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Container` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+  module.factory(
+    "Container",
+    [
+      'LoopBackResource', 'LoopBackAuth', '$injector', '$q',
+      function(LoopBackResource, LoopBackAuth, $injector, $q) {
+        var R = LoopBackResource(
+        urlBase + "/Containers/:id",
+          { 'id': '@id' },
+          {
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#getContainers
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Container` object.)
+             * </em>
+             */
+            "getContainers": {
+              isArray: true,
+              url: urlBase + "/Containers",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#createContainer
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Container` object.)
+             * </em>
+             */
+            "createContainer": {
+              url: urlBase + "/Containers",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#destroyContainer
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `container` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `` – `{undefined=}` -
+             */
+            "destroyContainer": {
+              url: urlBase + "/Containers/:container",
+              method: "DELETE",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#getContainer
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `container` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Container` object.)
+             * </em>
+             */
+            "getContainer": {
+              url: urlBase + "/Containers/:container",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#getFiles
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `container` – `{string=}` -
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Container` object.)
+             * </em>
+             */
+            "getFiles": {
+              isArray: true,
+              url: urlBase + "/Containers/:container/files",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#getFile
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `container` – `{string=}` -
+             *
+             *  - `file` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Container` object.)
+             * </em>
+             */
+            "getFile": {
+              url: urlBase + "/Containers/:container/files/:file",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#removeFile
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `container` – `{string=}` -
+             *
+             *  - `file` – `{string=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `` – `{undefined=}` -
+             */
+            "removeFile": {
+              url: urlBase + "/Containers/:container/files/:file",
+              method: "DELETE",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#upload
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `req` – `{object=}` -
+             *
+             *  - `res` – `{object=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `result` – `{object=}` -
+             */
+            "upload": {
+              url: urlBase + "/Containers/:container/upload",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Container#download
+             * @methodOf lbServices.Container
+             *
+             * @description
+             *
+             * <em>
+             * (The remote method definition does not provide any description.)
+             * </em>
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `container` – `{string=}` -
+             *
+             *  - `file` – `{string=}` -
+             *
+             *  - `req` – `{object=}` -
+             *
+             *  - `res` – `{object=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * This method returns no data.
+             */
+            "download": {
+              url: urlBase + "/Containers/:container/download/:file",
+              method: "GET",
+            },
+          }
+        );
+
+
+
+
+        /**
+        * @ngdoc property
+        * @name lbServices.Container#modelName
+        * @propertyOf lbServices.Container
+        * @description
+        * The name of the model represented by this $resource,
+        * i.e. `Container`.
+        */
+        R.modelName = "Container";
+
+
+
+        return R;
+      }]);
+
+/**
+ * @ngdoc object
+ * @name lbServices.Picture
+ * @header lbServices.Picture
+ * @object
+ *
+ * @description
+ *
+ * A $resource object for interacting with the `Picture` model.
+ *
+ * ## Example
+ *
+ * See
+ * {@link http://docs.angularjs.org/api/ngResource.$resource#example $resource}
+ * for an example of using this object.
+ *
+ */
+  module.factory(
+    "Picture",
+    [
+      'LoopBackResource', 'LoopBackAuth', '$injector', '$q',
+      function(LoopBackResource, LoopBackAuth, $injector, $q) {
+        var R = LoopBackResource(
+        urlBase + "/Pictures/:id",
+          { 'id': '@id' },
+          {
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#create
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Create a new instance of the model and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "create": {
+              url: urlBase + "/Pictures",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#createMany
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Create a new instance of the model and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "createMany": {
+              isArray: true,
+              url: urlBase + "/Pictures",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#patchOrCreate
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "patchOrCreate": {
+              url: urlBase + "/Pictures",
+              method: "PATCH",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#replaceOrCreate
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Replace an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "replaceOrCreate": {
+              url: urlBase + "/Pictures/replaceOrCreate",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#upsertWithWhere
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Update an existing model instance or insert a new one into the data source based on the where criteria.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "upsertWithWhere": {
+              url: urlBase + "/Pictures/upsertWithWhere",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#exists
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Check whether a model instance exists in the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `exists` – `{boolean=}` -
+             */
+            "exists": {
+              url: urlBase + "/Pictures/:id/exists",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#findById
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Find a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             *  - `filter` – `{object=}` - Filter defining fields and include
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "findById": {
+              url: urlBase + "/Pictures/:id",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#replaceById
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Replace attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "replaceById": {
+              url: urlBase + "/Pictures/:id/replace",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#find
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Find all instances of the model matched by filter from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+             *
+             * @param {function(Array.<Object>,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Array.<Object>} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "find": {
+              isArray: true,
+              url: urlBase + "/Pictures",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#findOne
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Find first instance of the model matched by filter from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `filter` – `{object=}` - Filter defining fields, where, include, order, offset, and limit
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "findOne": {
+              url: urlBase + "/Pictures/findOne",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#updateAll
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Update instances of the model matched by {{where}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * The number of instances updated
+             */
+            "updateAll": {
+              url: urlBase + "/Pictures/update",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#deleteById
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "deleteById": {
+              url: urlBase + "/Pictures/:id",
+              method: "DELETE",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#count
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Count instances of the model matched by where from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `count` – `{number=}` -
+             */
+            "count": {
+              url: urlBase + "/Pictures/count",
+              method: "GET",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#prototype$patchAttributes
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Patch attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `data` – `{object=}` - An object of model property name/value pairs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "prototype$patchAttributes": {
+              url: urlBase + "/Pictures/:id",
+              method: "PATCH",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#createChangeStream
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Create a change stream.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *   This method does not accept any parameters.
+             *   Supply an empty object or omit this argument altogether.
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `options` – `{object=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * Data properties:
+             *
+             *  - `changes` – `{ReadableStream=}` -
+             */
+            "createChangeStream": {
+              url: urlBase + "/Pictures/change-stream",
+              method: "POST",
+            },
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#upload
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Uploads a picture
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `options` – `{object=}` -
+             *
+             * @param {Object} postData Request data.
+             *
+             *  - `ctx` – `{object=}` -
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+            "upload": {
+              url: urlBase + "/Pictures/upload",
+              method: "POST",
+            },
+
+            // INTERNAL. Use PlayerJoueur.picture() instead.
+            "::get::PlayerJoueur::picture": {
+              url: urlBase + "/PlayerJoueurs/:id/picture",
+              method: "GET",
+            },
+          }
+        );
+
+
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#upsert
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+        R["upsert"] = R["patchOrCreate"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#updateOrCreate
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Patch an existing model instance or insert a new one into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `data` – `{object=}` - Model instance data
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+        R["updateOrCreate"] = R["patchOrCreate"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#patchOrCreateWithWhere
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Update an existing model instance or insert a new one into the data source based on the where criteria.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+        R["patchOrCreateWithWhere"] = R["upsertWithWhere"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#update
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Update instances of the model matched by {{where}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `where` – `{object=}` - Criteria to match model instances
+             *
+             * @param {Object} postData Request data.
+             *
+             * This method expects a subset of model properties as request parameters.
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * The number of instances updated
+             */
+        R["update"] = R["updateAll"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#destroyById
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+        R["destroyById"] = R["deleteById"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#removeById
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Delete a model instance by {{id}} from the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - Model id
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+        R["removeById"] = R["deleteById"];
+
+            /**
+             * @ngdoc method
+             * @name lbServices.Picture#updateAttributes
+             * @methodOf lbServices.Picture
+             *
+             * @description
+             *
+             * Patch attributes for a model instance and persist it into the data source.
+             *
+             * @param {Object=} parameters Request parameters.
+             *
+             *  - `id` – `{*}` - PersistedModel id
+             *
+             *  - `data` – `{object=}` - An object of model property name/value pairs
+             *
+             * @param {function(Object,Object)=} successCb
+             *   Success callback with two arguments: `value`, `responseHeaders`.
+             *
+             * @param {function(Object)=} errorCb Error callback with one argument:
+             *   `httpResponse`.
+             *
+             * @returns {Object} An empty reference that will be
+             *   populated with the actual data once the response is returned
+             *   from the server.
+             *
+             * <em>
+             * (The remote method definition does not provide any description.
+             * This usually means the response is a `Picture` object.)
+             * </em>
+             */
+        R["updateAttributes"] = R["prototype$patchAttributes"];
+
+
+        /**
+        * @ngdoc property
+        * @name lbServices.Picture#modelName
+        * @propertyOf lbServices.Picture
+        * @description
+        * The name of the model represented by this $resource,
+        * i.e. `Picture`.
+        */
+        R.modelName = "Picture";
+
 
 
         return R;

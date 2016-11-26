@@ -12,6 +12,7 @@
       'nouislider',
       'ngTable',
       'lbServices',
-      'ui.tinymce'
+      'ui.tinymce',
+      'checklist-model'
     ]);
 })();

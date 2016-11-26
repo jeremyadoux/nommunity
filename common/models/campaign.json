@@ -26,6 +26,11 @@
       "type": "hasMany",
       "model": "Rencontre",
       "foreignKey": "campaignId"
+    },
+    "playerJoueurs": {
+      "type": "hasMany",
+      "model": "PlayerJoueur",
+      "foreignKey": ""
     }
   },
   "acls": [],

@@ -51,6 +51,7 @@
     "angular": "1.4.14",
     "tinymce": "4.3.12",
     "angular-ui-tinymce": "latest",
-    "fabric.js": "fabric#^1.7.0"
+    "fabric.js": "fabric#^1.7.0",
+    "checklist-model": "^0.10.0"
   }
 }

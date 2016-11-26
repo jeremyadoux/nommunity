@@ -59,7 +59,6 @@
           parameterFilter.order = 'name ASC';
           CampaignService.load(parameterFilter)
             .then(function(list) {
-              console.log(vm.pager);
               vm.list = list;
             });
         });

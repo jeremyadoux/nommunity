@@ -8,23 +8,53 @@
     .module('app')
     .controller('RencontreGrid', RencontreGrid);
 
-  RencontreGrid.$inject = ['$stateParams', 'growlService'];
+  RencontreGrid.$inject = ['$scope', '$stateParams', 'growlService', '$uibModal', '$timeout'];
 
-  function RencontreGrid($stateParams, growlService) {
+  function RencontreGrid($scope, $stateParams, growlService, $uibModal, $timeout) {
     var vm = this;
 
     //@Methods
-    vm.start = start;
+    vm.closeModalPlayerAdd = closeModalPlayerAdd;
+    vm.nextStep = nextStep;
 
     //@Attributes
+    vm.currentStep = 0;
+    vm.vmCD = $scope.$parent.vmCD;
     vm.canvas = null;
     vm.gridSize = 50;
     vm.gridCol = 20;
     vm.gridLine = 20;
+    vm.pjList = [];
+
+    var modalInstancePlayerAdd;
+
+    function nextStep() {
+      vm.currentStep++;
+
+      switch (vm.currentStep) {
+        case 1:
+          openModalPlayerAdd();
+        break;
+        case 2:
+          modalInstancePlayerAdd.close();
+        break;
+      }
+    }
 
 
-    function start() {
+    function openModalPlayerAdd() {
+      modalInstancePlayerAdd = $uibModal.open({
+        templateUrl: 'views/campaign/player/modalSelect.html',
+        controllerAs: 'vmRG',
+        bindToController: true,
+        scope: $scope
+      });
+    }
 
+    function closeModalPlayerAdd() {
+      vm.currentStep = 0;
+      vm.pjList = [];
+      modalInstancePlayerAdd.close();
     }
 
     function init() {

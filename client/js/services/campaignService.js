@@ -32,7 +32,7 @@
 
     function loadById(id) {
       return Campaign.findById(
-        {id : id}
+        {id : id, filter: {include: "playerJoueurs"}}
       ).$promise;
     }
 
