@@ -131,7 +131,7 @@
           data: {
             requireLogin: true
           },
-          templateUrl: 'views/campaign/recontre.html',
+          templateUrl: 'views/campaign/rencontre.html',
           resolve: {
             loadPlugin: function ($ocLazyLoad) {
               return $ocLazyLoad.load([

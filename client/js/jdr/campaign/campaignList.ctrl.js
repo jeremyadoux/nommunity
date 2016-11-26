@@ -10,17 +10,17 @@
   function CampaignList($scope, $timeout, CampaignService, PagerService) {
     var vm = this;
 
+    //@Methods
     vm.setPage = setPage;
     vm.reloadCampaignList = reloadCampaignList;
 
+    //@Attributes
     vm.list = [];
     vm.pager = {};
     vm.totalItems = 10;
     vm.currentPage = 1;
     vm.filter = '';
     vm.listviewSearchStat = false;
-
-
     var timeoutSearch = null;
 
     $scope.$watch('vmCL.filter', function (newValue, oldValue) {

@@ -13,19 +13,19 @@
   function CampaignAction(CampaignService, $uibModal, $scope, growlService) {
     var vm = this;
 
-    //@Method
+    //@Methods
     vm.openCreateModal = openCreateModal;
     vm.closeModal = closeModal;
     vm.create = create;
     vm.deleteOpen = deleteOpen;
 
-    //@Init variable
+    //@Attributes
     vm.form = {
       name: ''
     };
+    vm.editedCampaign = false;
     var modalInstance;
     var reloadFunction;
-    vm.editedCampaign = false;
 
     function openCreateModal(campaign, callbackReload) {
       if(typeof callbackReload === "function") {
