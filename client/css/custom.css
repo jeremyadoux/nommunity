@@ -63,3 +63,15 @@
 #canvasContainer {
   overflow: hidden;
 }
+
+.btn-rigth-float {
+  right: 45px;
+  z-index: 10;
+  margin-top: 15px;
+}
+
+.btn-left-float {
+  left: 45px;
+  margin-top: 15px;
+  z-index: 10;
+}

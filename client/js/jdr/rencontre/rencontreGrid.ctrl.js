@@ -14,12 +14,18 @@
     var vm = this;
 
     //@Methods
+    vm.start = start;
 
     //@Attributes
     vm.canvas = null;
     vm.gridSize = 50;
     vm.gridCol = 20;
     vm.gridLine = 20;
+
+
+    function start() {
+
+    }
 
     function init() {
       initializeCanvas();

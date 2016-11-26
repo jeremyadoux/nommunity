@@ -18,4 +18,10 @@ coverage
 node_modules
 npm-debug.log
 .vagrant
+server/uploads/*
+!server/uploads/.gitkeeps
+!server/uploads/images
+server/uploads/images/*
+!server/uploads/images/.gitkeeps
+
 

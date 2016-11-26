@@ -81,5 +81,17 @@
   "Campaign": {
     "dataSource": "mongo",
     "public": true
+  },
+  "PlayerJoueur": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Container": {
+    "dataSource": "container",
+    "public": true
+  },
+  "Picture": {
+    "dataSource": "mongo",
+    "public": true
   }
 }

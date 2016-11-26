@@ -12,5 +12,11 @@
     "name": "mongo",
     "user": "",
     "connector": "mongodb"
+  },
+  "container": {
+    "name": "container",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./uploads"
   }
 }
