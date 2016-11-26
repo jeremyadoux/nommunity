@@ -14,7 +14,7 @@
     var vm = this;
 
     //@Methods
-    vm.closeModalPlayerAdd = closeModalPlayerAdd;
+    vm.closeModal = closeModal;
     vm.nextStep = nextStep;
 
     //@Attributes
@@ -26,35 +26,59 @@
     vm.gridLine = 20;
     vm.pjList = [];
 
-    var modalInstancePlayerAdd;
+    var modalInstance;
 
-    function nextStep() {
-      vm.currentStep++;
+    function nextStep(cpt = 1) {
+      //cpt = typeof cpt !== 'undefined' ? cpt : 1;
+      vm.currentStep += cpt;
 
       switch (vm.currentStep) {
         case 1:
+          //Choice player participate to figth
           openModalPlayerAdd();
-        break;
+          break;
         case 2:
-          modalInstancePlayerAdd.close();
-        break;
+          //Prologue modal
+          modalInstance.close();
+          openModalPrologue();
+          break;
+        case 3:
+          //Surprise round
+          modalInstance.close();
+          break;
+        case 4:
+          //Normal init
+          modalInstance.close();
+          break;
       }
     }
 
-
-    function openModalPlayerAdd() {
-      modalInstancePlayerAdd = $uibModal.open({
-        templateUrl: 'views/campaign/player/modalSelect.html',
+    function openModalPrologue() {
+      modalInstance = $uibModal.open({
+        templateUrl: 'views/campaign/rencontre/modalPrologue.html',
         controllerAs: 'vmRG',
         bindToController: true,
-        scope: $scope
+        scope: $scope,
+        backdrop: false,
+        keyboard: false
       });
     }
 
-    function closeModalPlayerAdd() {
+    function openModalPlayerAdd() {
+      modalInstance = $uibModal.open({
+        templateUrl: 'views/campaign/rencontre/modalSelectPlayer.html',
+        controllerAs: 'vmRG',
+        bindToController: true,
+        scope: $scope,
+        backdrop: false,
+        keyboard: false
+      });
+    }
+
+    function closeModal() {
       vm.currentStep = 0;
       vm.pjList = [];
-      modalInstancePlayerAdd.close();
+      modalInstance.close();
     }
 
     function init() {
