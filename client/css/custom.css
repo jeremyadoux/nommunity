@@ -138,3 +138,6 @@
   width: calc(100% - 30px);
 }
 
+.z-index-to-drag {
+  z-index: 50;
+}

@@ -12,13 +12,36 @@
     <div class="sidebar-inner c-overflow">
       <div class="listview lv-bordered lv-lg">
         <div class="lv-body">
-          <div class="table-responsive">
-            <div class="lv-item media" ng-repeat="pj in vmRG.vmCD.campaign.playerListObj" ng-click="vmRG.selectObjToDragIt(pj)">
-              <div class="pull-left">
-                <img draggable class="lv-img-sm" ng-src="{{pj.pictureUrl}}">
-              </div>
-              <div class="media-body">
-                <div class="lv-title">{{pj.name}}</div>
+          <div class="row row-eq-height">
+            <div class="col-xs-1 vcenter">
+              <button ng-click="vmRG.openToolbarAddObj=false" class="btn btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+            </div>
+            <div class="col-xs-11 vcenter">
+              <ul class="tab-nav">
+                <li ng-class="{'active': vmRG.currentTabs == 'pj'}">
+                  <a href ng-click="vmRG.changeTabs('pj')" class="ng-binding">PJ</a>
+                </li>
+                <li ng-class="{'active': vmRG.currentTabs == 'pnj'}">
+                  <a href ng-click="vmRG.changeTabs('pnj')" class="ng-binding">PNJ</a>
+                </li>
+                <li ng-class="{'active': vmRG.currentTabs == 'object'}">
+                  <a href ng-click="vmRG.changeTabs('object')" class="ng-binding">Objet</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tab-content">
+            <div class="tab-pane active">
+              <!-- PJ list -->
+              <div ng-show="vmRG.currentTabs == 'pj'" class="table-responsive">
+                <div class="lv-item media" ng-repeat="pj in vmRG.vmCD.campaign.playerListObj" ng-click="vmRG.selectObjToDragIt(pj)" ng-hide="pj.inGrid">
+                  <div class="pull-left">
+                    <img draggable dragstart="vmRG.dragStart(pj)" class="lv-img-sm z-index-to-drag" ng-src="{{pj.pictureUrl}}">
+                  </div>
+                  <div class="media-body">
+                    <div class="lv-title">{{pj.name}}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

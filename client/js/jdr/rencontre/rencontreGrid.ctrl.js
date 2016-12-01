@@ -18,6 +18,8 @@
     vm.nextStep = nextStep;
     vm.selectObjToDragIt = selectObjToDragIt;
     vm.handleDrop = handleDrop;
+    vm.dragStart = dragStart;
+    vm.changeTabs = changeTabs;
 
     //@Attributes
     vm.currentStep = 0;
@@ -29,11 +31,35 @@
     vm.pjList = [];
     vm.objInDraggability = false;
     vm.openToolbarAddObj = false;
+    vm.currentTabs = 'pj';
 
     var modalInstance;
 
+    function dragStart(pj) {
+      vm.objInDraggability = pj;
+    }
+
     function handleDrop(e) {
-      console.log(e);
+      if(vm.objInDraggability && !vm.objInDraggability.inGrid) {
+        vm.objInDraggability.inGrid = true;
+
+        var pointer = vm.canvas.getPointer(e);
+        var posx = pointer.x;
+        var posy = pointer.y;
+
+        var obj = new BaseObjectPlayableGrid(vm.objInDraggability, function() {
+          obj.fabricObj.set({
+            left: Math.floor(posx / vm.gridSize) * vm.gridSize,
+            top: Math.floor(posy / vm.gridSize) * vm.gridSize
+          });
+
+          vm.canvas.add(obj.fabricObj);
+        });
+      }
+    }
+
+    function changeTabs(type) {
+      vm.currentTabs = type;
     }
 
     function nextStep(cpt = 1) {
@@ -112,18 +138,19 @@
       vm.canvas.setWidth((vm.gridCol + 1) * vm.gridSize);
 
       vm.canvas.on('mouse:up', function (e) {
+        console.log(e.e);
         var pointer = vm.canvas.getPointer(e.e);
         var posx = pointer.x;
         var posy = pointer.y;
 
-        if(vm.objInDraggability) {
+        /*if(vm.objInDraggability) {
           var objFabric = new BaseObjectPlayableGrid(vm.objInDraggability);
           objFabric.fabricObj.set({
             left: Math.floor(posx / vm.gridSize) * vm.gridSize,
             top: Math.floor(posy / vm.gridSize) * vm.gridSize
           });
           vm.canvas.add(objFabric.fabricObj);
-        }
+        }*/
       });
     }
 
