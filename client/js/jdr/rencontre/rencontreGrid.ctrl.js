@@ -16,6 +16,8 @@
     //@Methods
     vm.closeModal = closeModal;
     vm.nextStep = nextStep;
+    vm.selectObjToDragIt = selectObjToDragIt;
+    vm.handleDrop = handleDrop;
 
     //@Attributes
     vm.currentStep = 0;
@@ -25,8 +27,14 @@
     vm.gridCol = 20;
     vm.gridLine = 20;
     vm.pjList = [];
+    vm.objInDraggability = false;
+    vm.openToolbarAddObj = false;
 
     var modalInstance;
+
+    function handleDrop(e) {
+      console.log(e);
+    }
 
     function nextStep(cpt = 1) {
       //cpt = typeof cpt !== 'undefined' ? cpt : 1;
@@ -81,6 +89,18 @@
       modalInstance.close();
     }
 
+    function selectObjToDragIt(obj) {
+      vm.objInDraggability = obj;
+    }
+
+    /*function addPjOnGrid() {
+      for(var i in vm.pjList) {
+        var pjObjFabric = new BaseObjectPlayableGrid(vm.pjList[i]);
+        pjObjFabric.
+        canvas.add()
+      }
+    }*/
+
     function init() {
       initializeCanvas();
       generateGrid();
@@ -90,6 +110,21 @@
       vm.canvas = new fabric.Canvas('canvas', { selection: false });
       vm.canvas.setHeight((vm.gridLine + 1) * vm.gridSize);
       vm.canvas.setWidth((vm.gridCol + 1) * vm.gridSize);
+
+      vm.canvas.on('mouse:up', function (e) {
+        var pointer = vm.canvas.getPointer(e.e);
+        var posx = pointer.x;
+        var posy = pointer.y;
+
+        if(vm.objInDraggability) {
+          var objFabric = new BaseObjectPlayableGrid(vm.objInDraggability);
+          objFabric.fabricObj.set({
+            left: Math.floor(posx / vm.gridSize) * vm.gridSize,
+            top: Math.floor(posy / vm.gridSize) * vm.gridSize
+          });
+          vm.canvas.add(objFabric.fabricObj);
+        }
+      });
     }
 
     function generateGrid() {

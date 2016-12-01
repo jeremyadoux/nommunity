@@ -3,9 +3,11 @@
  */
 
 class BasePlayable {
-  constructor(id, name) {
+  constructor(id, name, level, pictureUrl) {
     this.id = id;
     this.name = name;
+    this.level = level;
+    this.pictureUrl = pictureUrl || 'img/profile-pics/1.jpg';
     this._initiativeResult = 0;
     this._initiative = 0;
     this._overInitiative = 0;

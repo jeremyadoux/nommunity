@@ -1,11 +1,29 @@
-<div ng-controller="RencontreGrid as vmRG">
+<div  ng-controller="RencontreGrid as vmRG" ng-class="{ 'sw-toggled-rencontre': vmRG.openToolbarAddObj}">
   <div id="canvasContainer">
-    <button class="btn btn-float btn-success waves-effect btn-rigth-float">
+    <button class="btn btn-success waves-effect btn-rigth-float" ng-click="vmRG.openToolbarAddObj=true">
       <i class="zmdi zmdi-plus"></i>
     </button>
-    <button ng-show="vmRG.currentStep == 0" ng-click="vmRG.nextStep()" class="btn btn-float btn-success waves-effect btn-left-float">
+    <button ng-show="vmRG.currentStep == 0" ng-click="vmRG.nextStep()" class="btn btn-success waves-effect btn-left-float">
       <i class="zmdi zmdi-mail-send"></i>
     </button>
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" droppable drop="vmRG.handleDrop(arg1)"></canvas>
   </div>
+  <aside id="sidebar-added-obj">
+    <div class="sidebar-inner c-overflow">
+      <div class="listview lv-bordered lv-lg">
+        <div class="lv-body">
+          <div class="table-responsive">
+            <div class="lv-item media" ng-repeat="pj in vmRG.vmCD.campaign.playerListObj" ng-click="vmRG.selectObjToDragIt(pj)">
+              <div class="pull-left">
+                <img draggable class="lv-img-sm" ng-src="{{pj.pictureUrl}}">
+              </div>
+              <div class="media-body">
+                <div class="lv-title">{{pj.name}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
 </div>

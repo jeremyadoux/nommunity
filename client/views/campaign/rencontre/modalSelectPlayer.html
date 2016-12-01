@@ -14,13 +14,16 @@
       <div class="row">
         <div class="col-xs-6">
           <div class="table-responsive">
-            <div class="lv-item media" ng-repeat="pj in vmRG.vmCD.campaign.playerJoueurs">
+            <div class="lv-item media" ng-repeat="pj in vmRG.vmCD.campaign.playerListObj">
               <div class="checkbox pull-left">
                 <label>
                   <input type="checkbox"
                          checklist-model="vmRG.pjList" checklist-value="pj">
                   <i class="input-helper"></i>
                 </label>
+              </div>
+              <div class="pull-left">
+                <img draggable="true" class="lv-img-sm" ng-src="{{pj.pictureUrl}}" alt="">
               </div>
               <div class="media-body">
                 <div class="lv-title">{{pj.name}}</div>

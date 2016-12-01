@@ -3,7 +3,7 @@
  */
 class BasePlayer extends BasePlayable {
   constructor(pjObj, onChangeInitiativeCallback) {
-    super(pjObj.id, pjObj.name);
+    super(pjObj.id, pjObj.name, pjObj.level, pjObj.picture.url);
     this.onChangeInitiativeCallback = onChangeInitiativeCallback || false;
   }
 

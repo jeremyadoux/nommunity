@@ -8,9 +8,9 @@
     .module('app')
     .factory('CampaignService', CampaignService);
 
-  CampaignService.$inject = ['Campaign'];
+  CampaignService.$inject = ['$q', 'Campaign'];
 
-  function CampaignService(Campaign) {
+  function CampaignService($q, Campaign) {
     //Define the method's list
     var method = {
       create: create,
@@ -31,9 +31,22 @@
     }
 
     function loadById(id) {
-      return Campaign.findById(
-        {id : id, filter: {include: "playerJoueurs"}}
-      ).$promise;
+      return $q(function(resolve, reject) {
+        Campaign.findById(
+            {id : id, filter: {include: {playerJoueurs: "picture"}}}
+          )
+          .$promise
+          .then(function(response) {
+            response.playerListObj = [];
+
+            for(var i in response.playerJoueurs) {
+              response.playerListObj.push(new BasePlayer(response.playerJoueurs[i]));
+            }
+            resolve(response);
+          }, function(reason) {
+            reject(reason);
+          });
+      });
     }
 
     function load(filter) {
