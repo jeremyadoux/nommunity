@@ -5,23 +5,30 @@ class BaseObjectPlayableGrid {
    constructor(obj, readyCallback) {
      var vm = this;
 
+     this.fabricObj = false;
      this.obj = obj;
-
 
      fabric.Image.fromURL(obj.pictureUrl, function(oImg) {
        oImg.set({
          hasControls: false,
          hasRotatingPoint: false,
-         width: 50,
-         height: 50,
+         width: (50 * vm.obj.size),
+         height: (50 * vm.obj.size),
          clipTo: function (ctx) {
-           ctx.arc(0, 0, 25, 0, Math.PI * 2, true);
+           ctx.arc(0, 0, (50 * vm.obj.size) /  2, 0, Math.PI * 2, true);
          },
-         content: this
+         content: vm
        });
 
        vm.fabricObj = oImg;
        readyCallback();
+     });
+   }
+
+   moveAction(grid) {
+     this.fabricObj.set({
+       left: Math.round(this.fabricObj.left / grid) * grid,
+       top: Math.round(this.fabricObj.top / grid) * grid
      });
    }
 }

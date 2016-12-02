@@ -29,31 +29,29 @@
     vm.gridCol = 20;
     vm.gridLine = 20;
     vm.pjList = [];
+    vm.objList = [
+      new ObjetWallGrid()
+    ];
     vm.objInDraggability = false;
     vm.openToolbarAddObj = false;
     vm.currentTabs = 'pj';
 
     var modalInstance;
 
-    function dragStart(pj) {
-      vm.objInDraggability = pj;
+    function dragStart(obj) {
+      vm.objInDraggability = obj;
     }
 
     function handleDrop(e) {
-      if(vm.objInDraggability && !vm.objInDraggability.inGrid) {
-        vm.objInDraggability.inGrid = true;
-
+      if(vm.objInDraggability) {
         var pointer = vm.canvas.getPointer(e);
         var posx = pointer.x;
         var posy = pointer.y;
 
-        var obj = new BaseObjectPlayableGrid(vm.objInDraggability, function() {
-          obj.fabricObj.set({
-            left: Math.floor(posx / vm.gridSize) * vm.gridSize,
-            top: Math.floor(posy / vm.gridSize) * vm.gridSize
-          });
-
-          vm.canvas.add(obj.fabricObj);
+        vm.objInDraggability.createGridObject(posx, posy, vm.gridSize, function(obj) {
+          if(obj) {
+            vm.canvas.add(obj);
+          }
         });
       }
     }
@@ -119,14 +117,6 @@
       vm.objInDraggability = obj;
     }
 
-    /*function addPjOnGrid() {
-      for(var i in vm.pjList) {
-        var pjObjFabric = new BaseObjectPlayableGrid(vm.pjList[i]);
-        pjObjFabric.
-        canvas.add()
-      }
-    }*/
-
     function init() {
       initializeCanvas();
       generateGrid();
@@ -137,20 +127,10 @@
       vm.canvas.setHeight((vm.gridLine + 1) * vm.gridSize);
       vm.canvas.setWidth((vm.gridCol + 1) * vm.gridSize);
 
-      vm.canvas.on('mouse:up', function (e) {
-        console.log(e.e);
-        var pointer = vm.canvas.getPointer(e.e);
-        var posx = pointer.x;
-        var posy = pointer.y;
-
-        /*if(vm.objInDraggability) {
-          var objFabric = new BaseObjectPlayableGrid(vm.objInDraggability);
-          objFabric.fabricObj.set({
-            left: Math.floor(posx / vm.gridSize) * vm.gridSize,
-            top: Math.floor(posy / vm.gridSize) * vm.gridSize
-          });
-          vm.canvas.add(objFabric.fabricObj);
-        }*/
+      vm.canvas.on('object:moving', function(options) {
+        if(options.target.content.moveAction) {
+          options.target.content.moveAction(vm.gridSize);
+        }
       });
     }
 

@@ -15,6 +15,8 @@ class BasePlayable {
     this.effectOwner = [];
     this.effectTarget = [];
     this.onInitiativeChange = false;
+    this.size = 1;
+    this.inGrid = false;
   }
 
   set isCurrentPlayer(isCurrentPlayer) {
@@ -63,5 +65,21 @@ class BasePlayable {
 
   sendOverInitiative() {
     this._overInitiatives = d20.roll("1d1000");
+  }
+
+  createGridObject(posx, posy, grid, callback) {
+    if(!this.inGrid) {
+      this.inGrid = true;
+      var obj = new BaseObjectPlayableGrid(this, function() {
+        obj.fabricObj.set({
+          left: Math.floor(posx / grid) * grid,
+          top: Math.floor(posy / grid) * grid
+        });
+
+        callback(obj.fabricObj);
+      });
+    } else {
+      callback(false);
+    }
   }
 }

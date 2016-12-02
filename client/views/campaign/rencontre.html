@@ -34,7 +34,7 @@
             <div class="tab-pane active">
               <!-- PJ list -->
               <div ng-show="vmRG.currentTabs == 'pj'" class="table-responsive">
-                <div class="lv-item media" ng-repeat="pj in vmRG.vmCD.campaign.playerListObj" ng-click="vmRG.selectObjToDragIt(pj)" ng-hide="pj.inGrid">
+                <div class="lv-item media" ng-repeat="pj in vmRG.vmCD.campaign.playerListObj" ng-hide="pj.inGrid">
                   <div class="pull-left">
                     <img draggable dragstart="vmRG.dragStart(pj)" class="lv-img-sm z-index-to-drag" ng-src="{{pj.pictureUrl}}">
                   </div>
@@ -43,6 +43,18 @@
                   </div>
                 </div>
               </div>
+              <!-- OBJ list -->
+              <div ng-show="vmRG.currentTabs == 'object'" class="table-responsive">
+                <div class="lv-item media" ng-repeat="obj in vmRG.objList">
+                  <div class="pull-left">
+                    <img draggable dragstart="vmRG.dragStart(obj)" class="lv-img-sm z-index-to-drag" ng-src="{{obj.pictureUrl}}">
+                  </div>
+                  <div class="media-body">
+                    <div class="lv-title">{{obj.name}}</div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
