@@ -100,6 +100,7 @@
 }
 .sw-toggled-rencontre #sidebar-added-obj .sidebar-inner {
   height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
   width: 268px;
 }
@@ -140,4 +141,9 @@
 
 .z-index-to-drag {
   z-index: 50;
+}
+
+.modal-body-infinite-scroll {
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
 }

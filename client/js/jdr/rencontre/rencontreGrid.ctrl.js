@@ -20,6 +20,9 @@
     vm.handleDrop = handleDrop;
     vm.dragStart = dragStart;
     vm.changeTabs = changeTabs;
+    vm.openModalAddPnj = openModalAddPnj;
+    vm.closeModalAddPnj = closeModalAddPnj;
+    vm.addPnjToRencontre = addPnjToRencontre;
 
     //@Attributes
     vm.currentStep = 0;
@@ -29,6 +32,7 @@
     vm.gridCol = 20;
     vm.gridLine = 20;
     vm.pjList = [];
+    vm.pnjList = [];
     vm.objList = [
       new ObjetWallGrid()
     ];
@@ -66,19 +70,14 @@
 
       switch (vm.currentStep) {
         case 1:
-          //Choice player participate to figth
-          openModalPlayerAdd();
-          break;
-        case 2:
           //Prologue modal
-          modalInstance.close();
           openModalPrologue();
           break;
-        case 3:
+        case 2:
           //Surprise round
           modalInstance.close();
           break;
-        case 4:
+        case 3:
           //Normal init
           modalInstance.close();
           break;
@@ -155,6 +154,25 @@
     function CharOfId(i) {
       return (i >= 26 ? CharOfId((i / 26 >> 0) - 1) : '') +
         'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i % 26 >> 0];
+    }
+
+    function openModalAddPnj() {
+      modalInstance = $uibModal.open({
+        templateUrl: 'views/rencontre/modalAddPnj.html',
+        controllerAs: 'vmRC',
+        bindToController: true,
+        scope: $scope
+      });
+    }
+
+    function closeModalAddPnj() {
+      modalInstance.close();
+    }
+
+    function addPnjToRencontre(pnj) {
+      var pnjCopy = {};
+      angular.copy(pnj, pnjCopy);
+      vm.pnjList.push(new BaseMob(pnjCopy));
     }
 
     init();

@@ -13,6 +13,7 @@
       'ngTable',
       'lbServices',
       'ui.tinymce',
-      'checklist-model'
+      'checklist-model',
+      'infinite-scroll'
     ]);
 })();

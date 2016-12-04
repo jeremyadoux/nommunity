@@ -1,36 +1,44 @@
+
 <div class="modal-header">
-  <h4 class="modal-title">Add PNJ</h4>
+  <div class="row row-eq-height">
+    <div class="col-xs-1 vcenter">
+      <button ng-click="vmRG.closeModalAddPnj()" class="btns btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+    </div>
+    <div class="col-xs-11 vcenter">
+      <h3>Ajouter des PNJs</h3>
+    </div>
+  </div>
 </div>
 <div class="modal-body" ng-controller="PNJController as vmPnj">
   <div class="form-group fg-line">
     <label class="fg-label">Recherche</label>
     <input class="input-sm form-control fg-input" type="text" ng-model="vmPnj.filter">
   </div>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Level</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr ng-repeat="pnj in vmPnj.pnjList">
-        <td>
-          <button ng-click="vmRC.addPnj(pnj)" class="btn btn-primary btn-sm m-t-10 waves-effect" type="button">Add</button>
-          {{pnj.name}}
-        </td>
-        <td>
-          {{pnj.level}}
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-sm-12">
-    <uib-pagination total-items="vmPnj.totalItems" ng-model="vmPnj.currentPnjPage" ng-change="vmPnj.setPage()"></uib-pagination>
+  <div>
+    <div class="table-responsive modal-body-infinite-scroll">
+      <div infinite-scroll="vmPnj.nextInfinitePage()" infinite-scroll-container='".modal-body-infinite-scroll"'>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Niveau</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="pnj in vmPnj.pnjList">
+            <td>
+              <button ng-click="vmRG.addPnjToRencontre(pnj)" class="btn btn-primary btn-sm m-t-10 waves-effect" type="button">Ajouter</button>
+              {{pnj.name}}
+            </td>
+            <td>
+              {{pnj.level}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-link" ng-click="vmRC.closeModal()">Close</button>
 </div>

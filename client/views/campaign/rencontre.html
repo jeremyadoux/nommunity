@@ -9,7 +9,7 @@
     <canvas id="canvas" droppable drop="vmRG.handleDrop(arg1)"></canvas>
   </div>
   <aside id="sidebar-added-obj">
-    <div class="sidebar-inner c-overflow">
+    <div class="sidebar-inner">
       <div class="listview lv-bordered lv-lg">
         <div class="lv-body">
           <div class="row row-eq-height">
@@ -41,6 +41,20 @@
                   <div class="media-body">
                     <div class="lv-title">{{pj.name}}</div>
                   </div>
+                </div>
+              </div>
+              <!-- PJN list -->
+              <div ng-show="vmRG.currentTabs == 'pnj'" class="table-responsive">
+                <div class="lv-item media" ng-repeat="pnj in vmRG.pnjList" ng-hide="pnj.inGrid">
+                  <div class="pull-left">
+                    <img draggable dragstart="vmRG.dragStart(pnj)" class="lv-img-sm z-index-to-drag" ng-src="{{pnj.pictureUrl}}">
+                  </div>
+                  <div class="media-body">
+                    <div class="lv-title">{{pnj.name}}</div>
+                  </div>
+                </div>
+                <div class="lv-item media">
+                  <button ng-click="vmRG.openModalAddPnj()" class="btn btn-primary waves-effect">Ajouter</button>
                 </div>
               </div>
               <!-- OBJ list -->

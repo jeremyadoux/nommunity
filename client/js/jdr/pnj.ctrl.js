@@ -18,6 +18,7 @@
     vm.edit = edit;
     vm.setPage = setPage;
     vm.getPeril = getPeril;
+    vm.nextInfinitePage = nextInfinitePage;
 
     //Variable
     vm.formPNJ = {
@@ -41,20 +42,33 @@
     vm.totalItems = 10;
     vm.currentPnjPage = 1;
     vm.filter = '';
+    vm.inLoadingNextPage = false;
 
     initController();
 
     $scope.$watch('vmPnj.filter', function (newValue, oldValue) {
       $timeout(function() {
+        $('.modal-body-infinite-scroll').animate({ scrollTop: 0 }, 'fast');
+        nextInfinitePage = true;
         vm.currentPnjPage = 1;
         vm.setPage();
       }, 300);
     });
 
     function initController() {
+      vm.inLoadingNextPage = true;
       // initialize to page 1
       vm.currentPnjPage = 1;
       vm.setPage();
+    }
+
+    function nextInfinitePage() {
+      if(!vm.inLoadingNextPage) {
+        vm.inLoadingNextPage = true;
+        vm.currentPnjPage++;
+        vm.setPage();
+        console.log('next page');
+      }
     }
 
     function setPage() {
@@ -82,7 +96,12 @@
           parameterFilter.order = 'name ASC';
           JDRPNJService.load(parameterFilter)
             .then(function(pnjList) {
-              vm.pnjList = pnjList;
+              if(vm.currentPnjPage === 1) {
+                vm.pnjList = pnjList;
+              } else {
+                vm.pnjList = vm.pnjList.concat(pnjList);
+              }
+              vm.inLoadingNextPage = false;
             });
         });
     }
