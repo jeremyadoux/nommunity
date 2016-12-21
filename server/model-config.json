@@ -93,5 +93,9 @@
   "Picture": {
     "dataSource": "mongo",
     "public": true
+  },
+  "Story": {
+    "dataSource": "mongo",
+    "public": true
   }
 }

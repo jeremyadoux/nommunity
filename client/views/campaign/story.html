@@ -1,0 +1,13 @@
+<div  ng-controller="StoryCampaign as vmSC">
+  <div id="canvasContainer">
+    <div class="div-left-float">
+      <button class="btn btn-info btn-icon waves-effect waves-circle" ng-repeat="story in vmSC.vmCD.campaign.story">
+        <i class="zmdi">{{story.chapter}}</i>
+      </button>
+      <button class="btn btn-info btn-icon waves-effect waves-circle" ng-click="vmSC.addStory()">
+        <i class="zmdi zmdi-plus"></i>
+      </button>
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+{
+  "name": "Story",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "chapter": {
+      "type": "number",
+      "required": true,
+      "default": 1
+    }
+  },
+  "validations": [],
+  "relations": {
+    "author": {
+      "type": "belongsTo",
+      "model": "Customer",
+      "foreignKey": "authorId",
+      "required": true
+    },
+    "campaign": {
+      "type": "belongsTo",
+      "model": "Campaign",
+      "foreignKey": "campaignId",
+      "required": true
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

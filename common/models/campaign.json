@@ -27,6 +27,11 @@
       "model": "Rencontre",
       "foreignKey": "campaignId"
     },
+    "story": {
+      "type": "hasMany",
+      "model": "Story",
+      "foreignKey": "storyId"
+    },
     "playerJoueurs": {
       "type": "hasMany",
       "model": "PlayerJoueur",

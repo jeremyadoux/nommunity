@@ -70,12 +70,12 @@
             }
           }
         })
-        .state('campaign-detail.sequence', {
-          url: '/campaign/detail/:campaignId/sequence',
+        .state('campaign-detail.story', {
+          url: '/campaign/detail/:campaignId/story',
           data: {
             requireLogin: true
           },
-          templateUrl: 'views/campaign/sequence.html',
+          templateUrl: 'views/campaign/story.html',
           resolve: {
             loadPlugin: function ($ocLazyLoad) {
               return $ocLazyLoad.load([

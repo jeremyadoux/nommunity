@@ -78,6 +78,13 @@
   position: fixed;
 }
 
+.div-left-float {
+  left: 45px;
+  z-index: 10;
+  margin-top: 15px;
+  position: fixed;
+}
+
 #sidebar-added-obj {
   position: fixed;
   background: #fff;

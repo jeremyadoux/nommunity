@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <div class="row row-eq-height">
+    <div class="col-xs-1 vcenter">
+      <button ng-click="vmSC.closeModal()" class="btns btn-danger btn-icon waves-effect waves-circle"><i class="zmdi zmdi-arrow-back"></i></button>
+    </div>
+    <div class="col-xs-11 vcenter">
+      <h3 ng-hide="vmSC.editedStory">Créer un nouveau scénario</h3>
+      <h3 ng-show="vmSC.editedStory">Editer le scénario {{vmSC.editedCampaign.name}}</h3>
+    </div>
+  </div>
+</div>
+
+<div class="modal-body">
+  <form name="createStoryForm" role="form" novalidate>
+    <div class="col-sm-8">
+      <div class="form-group fg-line">
+        <label for="InputStoryName">Nom du scénario</label>
+        <input id="InputStoryName" type="text" name="InputStoryName"  placeholder="Tapez ici le nom de votre scénario" ng-model="vmSC.form.name" class="form-control" required="">
+        <div ng-show="createStoryForm.$submitted">
+          <small class="help-block" ng-show="createStoryForm.InputStoryName.$error.required">Vous devez saisir un nom.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <button ng-click="vmSC.create(createStoryForm)" class="btn btn-success btn-float waves-effect"><i class="zmdi zmdi-check"></i></button>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+
+</div>

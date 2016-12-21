@@ -16,6 +16,7 @@
       create: create,
       load: load,
       loadById: loadById,
+      addStory: addStory,
       count: count
     };
 
@@ -33,7 +34,7 @@
     function loadById(id) {
       return $q(function(resolve, reject) {
         Campaign.findById(
-            {id : id, filter: {include: {playerJoueurs: "picture"}}}
+            {id : id, filter: {include: [{playerJoueurs: "picture"}, "story"]}}
           )
           .$promise
           .then(function(response) {
@@ -47,6 +48,13 @@
             reject(reason);
           });
       });
+    }
+
+    function addStory(campaign, story) {
+      return Campaign.story.create(
+        {id: campaign.id},
+        {name: story.name, chapter: story.chapter}
+      ).$promise
     }
 
     function load(filter) {
